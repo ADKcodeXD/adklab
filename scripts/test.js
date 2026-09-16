@@ -102,6 +102,32 @@ forbiddenStrings.forEach(str => {
   assert(!indexHtml.includes(str), `index.html should not contain placeholder: "${str}"`);
 });
 
+// 8. Screenshot assets check
+const expectedScreenshots = [
+  'quant.jpg',
+  'dailynews.jpg',
+  'notify.jpg',
+  'traffic.jpg',
+  'auth.jpg',
+  'substore.jpg',
+  'myblog.png',
+  'vue3-emoji.png',
+  'mmgc.jpg',
+  'adkblog-backend.jpg',
+  'anime-audio.jpg',
+  'easynote.jpg'
+];
+
+expectedScreenshots.forEach(imgName => {
+  const imgPath = path.join(rootDir, 'assets', 'img', imgName);
+  const exists = fs.existsSync(imgPath);
+  assert(exists, `Screenshot asset exists: assets/img/${imgName}`);
+  if (exists) {
+    const stat = fs.statSync(imgPath);
+    assert(stat.size > 10000, `Screenshot asset is non-empty (>10KB): ${imgName} (${Math.round(stat.size / 1024)}KB)`);
+  }
+});
+
 console.log('\n--- Test Summary ---');
 console.log(`Passed: ${passed}, Failed: ${failed}`);
 

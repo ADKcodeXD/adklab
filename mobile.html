@@ -2,7 +2,7 @@
 <html class="dark" lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
   <title>ADK lab Mobile — 极简移动端门户</title>
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
@@ -34,7 +34,7 @@
     };
   </script>
 </head>
-<body class="bg-background text-on-surface font-sans antialiased min-h-screen pb-16 px-4 pt-6">
+<body class="bg-background text-on-surface font-sans antialiased min-h-screen pb-16 px-4 pt-6 max-w-lg mx-auto">
 
   <!-- Mobile Top Bar -->
   <header class="flex items-center justify-between pb-6 border-b border-white/5">
@@ -83,87 +83,63 @@
 
     <div class="space-y-3">
       <!-- Item 1 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://quant.adkfintech.com" target="_blank">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center">
-            <span class="material-symbols-outlined text-xl">query_stats</span>
-          </div>
-          <div>
-            <div class="text-sm font-semibold text-white">ADK Quant</div>
-            <div class="text-[11px] text-on-surface-variant/75">资产持仓与量化监控服务 · Port 8931</div>
-          </div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://quant.adkfintech.com" target="_blank">
+        <img src="assets/img/quant.jpg" alt="Quant" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-semibold text-white truncate">ADK Quant</div>
+          <div class="text-[11px] text-on-surface-variant/75 truncate">资产持仓与量化监控 · Port 8931</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+        <span class="material-symbols-outlined text-sm text-primary flex-shrink-0">arrow_forward</span>
       </a>
 
       <!-- Item 2 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://dailynews.adkfintech.com" target="_blank">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-secondary/15 text-secondary flex items-center justify-center">
-            <span class="material-symbols-outlined text-xl">newspaper</span>
-          </div>
-          <div>
-            <div class="text-sm font-semibold text-white">ADK Daily News</div>
-            <div class="text-[11px] text-on-surface-variant/75">每日 AI 早报与资讯聚合 · Port 8932</div>
-          </div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://dailynews.adkfintech.com" target="_blank">
+        <img src="assets/img/dailynews.jpg" alt="DailyNews" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-semibold text-white truncate">ADK Daily News</div>
+          <div class="text-[11px] text-on-surface-variant/75 truncate">每日 AI 早报与资讯聚合 · Port 8932</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+        <span class="material-symbols-outlined text-sm text-secondary flex-shrink-0">arrow_forward</span>
       </a>
 
       <!-- Item 3 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://traffic.adkfintech.com" target="_blank">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center">
-            <span class="material-symbols-outlined text-xl">speed</span>
-          </div>
-          <div>
-            <div class="text-sm font-semibold text-white">VPS Traffic Panel</div>
-            <div class="text-[11px] text-on-surface-variant/75">VPS 节点与流量实时监控 · Port 8927</div>
-          </div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://traffic.adkfintech.com" target="_blank">
+        <img src="assets/img/traffic.jpg" alt="Traffic" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-semibold text-white truncate">VPS Traffic Panel</div>
+          <div class="text-[11px] text-on-surface-variant/75 truncate">VPS 节点与流量实时监控 · Port 8927</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+        <span class="material-symbols-outlined text-sm text-primary flex-shrink-0">arrow_forward</span>
       </a>
 
       <!-- Item 4 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://notify.adkfintech.com" target="_blank">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-tertiary/15 text-tertiary flex items-center justify-center">
-            <span class="material-symbols-outlined text-xl">notifications_active</span>
-          </div>
-          <div>
-            <div class="text-sm font-semibold text-white">Notification Hub</div>
-            <div class="text-[11px] text-on-surface-variant/75">统一消息推送与告警中心 · Port 8933</div>
-          </div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://notify.adkfintech.com" target="_blank">
+        <img src="assets/img/notify.jpg" alt="Notify" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-semibold text-white truncate">Notification Hub</div>
+          <div class="text-[11px] text-on-surface-variant/75 truncate">统一消息推送与告警中心 · Port 8933</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-tertiary">arrow_forward</span>
+        <span class="material-symbols-outlined text-sm text-tertiary flex-shrink-0">arrow_forward</span>
       </a>
 
       <!-- Item 5 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://auth.adkfintech.com" target="_blank">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-tertiary/15 text-tertiary flex items-center justify-center">
-            <span class="material-symbols-outlined text-xl">lock_person</span>
-          </div>
-          <div>
-            <div class="text-sm font-semibold text-white">Authelia SSO</div>
-            <div class="text-[11px] text-on-surface-variant/75">双因素认证与零信任网关 · Port 8934</div>
-          </div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://auth.adkfintech.com" target="_blank">
+        <img src="assets/img/auth.jpg" alt="Auth" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-semibold text-white truncate">Authelia SSO</div>
+          <div class="text-[11px] text-on-surface-variant/75 truncate">双因素认证与零信任网关 · Port 8934</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-tertiary">arrow_forward</span>
+        <span class="material-symbols-outlined text-sm text-tertiary flex-shrink-0">arrow_forward</span>
       </a>
 
       <!-- Item 6 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://sub.adkproxy.top" target="_blank">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-secondary/15 text-secondary flex items-center justify-center">
-            <span class="material-symbols-outlined text-xl">alt_route</span>
-          </div>
-          <div>
-            <div class="text-sm font-semibold text-white">Sub-Store Hub</div>
-            <div class="text-[11px] text-on-surface-variant/75">订阅转换与节点规则管理 · Port 3001</div>
-          </div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://sub.adkproxy.top" target="_blank">
+        <img src="assets/img/substore.jpg" alt="SubStore" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-semibold text-white truncate">Sub-Store Hub</div>
+          <div class="text-[11px] text-on-surface-variant/75 truncate">订阅转换与节点规则管理 · Port 3001</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+        <span class="material-symbols-outlined text-sm text-secondary flex-shrink-0">arrow_forward</span>
       </a>
     </div>
   </div>
@@ -180,75 +156,81 @@
 
     <div class="space-y-3">
       <!-- OSS 1 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/Myblog-Vue3viteTs" target="_blank">
-        <div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/Myblog-Vue3viteTs" target="_blank">
+        <img src="assets/img/myblog.png" alt="Myblog" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white">Myblog-Vue3viteTs</span>
-            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 128</span>
+            <span class="text-sm font-semibold text-white truncate">Myblog-Vue3viteTs</span>
+            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 128</span>
           </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">全功能现代化个人博客平台 · Vue 3 + Vite</div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">现代化个人博客平台 · Vue 3 + Vite</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-primary">open_in_new</span>
+        <span class="material-symbols-outlined text-sm text-primary flex-shrink-0">open_in_new</span>
       </a>
 
       <!-- OSS 2 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/Vue3-Emoji" target="_blank">
-        <div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/Vue3-Emoji" target="_blank">
+        <img src="assets/img/vue3-emoji.png" alt="Vue3 Emoji" class="w-14 h-14 rounded-xl object-contain bg-black/40 border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white">Vue3-Emoji</span>
-            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 56</span>
+            <span class="text-sm font-semibold text-white truncate">Vue3-Emoji</span>
+            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 56</span>
           </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">轻量级高复用表情选择器组件库</div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">轻量级高复用表情选择器组件库</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-tertiary">open_in_new</span>
+        <span class="material-symbols-outlined text-sm text-tertiary flex-shrink-0">open_in_new</span>
       </a>
 
       <!-- OSS 3 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/MMGC-frontend" target="_blank">
-        <div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/MMGC-frontend" target="_blank">
+        <img src="assets/img/mmgc.jpg" alt="MMGC" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white">MMGC Nuxt3 Portal</span>
-            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 20</span>
+            <span class="text-sm font-semibold text-white truncate">MMGC Nuxt3 Portal</span>
+            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 20</span>
           </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">黄金祭 MMGC 官方网站系统 · Nuxt 3 SSR</div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">黄金祭 MMGC 官网 · Nuxt 3 SSR</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-secondary">open_in_new</span>
+        <span class="material-symbols-outlined text-sm text-secondary flex-shrink-0">open_in_new</span>
       </a>
 
       <!-- OSS 4 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/ADKblog-backend" target="_blank">
-        <div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/ADKblog-backend" target="_blank">
+        <img src="assets/img/adkblog-backend.jpg" alt="ADKblog backend" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white">ADKblog-backend</span>
-            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 17</span>
+            <span class="text-sm font-semibold text-white truncate">ADKblog-backend</span>
+            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 17</span>
           </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">企业级博客服务后端系统 · Spring Boot</div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">企业级博客服务后端 · Spring Boot</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-primary">open_in_new</span>
+        <span class="material-symbols-outlined text-sm text-primary flex-shrink-0">open_in_new</span>
       </a>
 
       <!-- OSS 5 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/Anime-Audio-Dataset-Maker" target="_blank">
-        <div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/Anime-Audio-Dataset-Maker" target="_blank">
+        <img src="assets/img/anime-audio.jpg" alt="Anime Audio Maker" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white">Anime Audio Maker</span>
-            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 6</span>
+            <span class="text-sm font-semibold text-white truncate">Anime Audio Maker</span>
+            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 6</span>
           </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">动漫语音识别与训练切片流水线 · Python</div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">动漫语音识别与训练切片流水线</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-tertiary">open_in_new</span>
+        <span class="material-symbols-outlined text-sm text-tertiary flex-shrink-0">open_in_new</span>
       </a>
 
       <!-- OSS 6 -->
-      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/EasyNote" target="_blank">
-        <div>
+      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/EasyNote" target="_blank">
+        <img src="assets/img/easynote.jpg" alt="EasyNote" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
+        <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white">EasyNote</span>
-            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-secondary/20 text-secondary">NUXT 3</span>
+            <span class="text-sm font-semibold text-white truncate">EasyNote</span>
+            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-secondary/20 text-secondary flex-shrink-0">NUXT 3</span>
           </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">基于 Nuxt 3 的极简云端通用笔记</div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">极简跨端云笔记 · Local-First</div>
         </div>
-        <span class="material-symbols-outlined text-sm text-secondary">open_in_new</span>
+        <span class="material-symbols-outlined text-sm text-secondary flex-shrink-0">open_in_new</span>
       </a>
     </div>
   </div>
