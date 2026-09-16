@@ -3,6 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <script>
+    if ((window.innerWidth < 768 || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) && !window.location.search.includes('desktop=1')) {
+      window.location.replace('mobile.html');
+    }
+  </script>
   <title>ADK lab — 极简工具集与实验室 | Interactive Developer Portal</title>
   <meta name="description" content="ADK lab - 探索发现更多有趣 | Develop By ADK. 个人云端在线服务与 GitHub 高质量开源项目展厅.">
   <meta name="keywords" content="ADK, ADK lab, Quant, Vue3-Emoji, Myblog, Nuxt3, Fullstack, Open Source">

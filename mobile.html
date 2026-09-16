@@ -3,242 +3,1000 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
-  <title>ADK lab Mobile — 极简移动端门户</title>
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <title>ADK lab 移动端 — 极简工具集与实验室</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <script>
     tailwind.config = {
-      darkMode: "class",
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            "surface-container": "#111a2e",
-            "surface-container-high": "#18233c",
-            "primary": "#7dd3fc",
-            "secondary": "#88b4cc",
-            "tertiary": "#c8a0f0",
-            "on-surface": "#e0e8f0",
-            "on-surface-variant": "#a0b4c4",
-            "background": "#070a12"
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              primary: '#7dd3fc',
+              dark: '#030712',
+            }
           },
           fontFamily: {
-            sans: ["Inter", "sans-serif"],
-            mono: ["JetBrains Mono", "monospace"]
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          animation: {
+            'bounce-soft': 'bounceSoft 2s ease-in-out infinite',
+          },
+          keyframes: {
+            bounceSoft: {
+              '0%, 100%': { transform: 'translate3d(0, 0, 0)', opacity: '0.9' },
+              '50%': { transform: 'translate3d(0, 8px, 0)', opacity: '0.4' },
+            }
           }
         }
       }
-    };
+    }
   </script>
-</head>
-<body class="bg-background text-on-surface font-sans antialiased min-h-screen pb-16 px-4 pt-6 max-w-lg mx-auto">
 
-  <!-- Mobile Top Bar -->
-  <header class="flex items-center justify-between pb-6 border-b border-white/5">
-    <div class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary font-bold text-sm">
-        A
-      </div>
-      <div>
-        <h1 class="text-lg font-black tracking-tight text-white">ADK <span class="text-primary font-light">lab</span></h1>
-        <p class="text-[10px] font-mono text-on-surface-variant/70">Mobile Portal Edition</p>
-      </div>
+  <style>
+    html, body {
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      background-color: #030712;
+      user-select: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* GPU-Accelerated Fixed Background Canvas */
+    #space-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      will-change: transform;
+    }
+
+    /* Transform-based Fullpage Slider - Zero layout thrashing / No scroll jank */
+    #fullpage-wrapper {
+      height: 100vh;
+      height: 100dvh;
+      width: 100vw;
+      position: relative;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    #fullpage-track {
+      width: 100%;
+      height: 100%;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .snap-section {
+      height: 100vh;
+      height: 100dvh;
+      width: 100vw;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+    }
+
+    /* Subtle neon accent text */
+    .neon-text-glow {
+      text-shadow: 0 0 24px rgba(125, 211, 252, 0.45);
+    }
+
+    /* Project Cards without ANY scale transform */
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    /* Card Entrance Animation: Pure translateY(32px) -> translateY(0), Opacity 0 -> 1 */
+    .cascade-item {
+      opacity: 0;
+      transform: translate3d(0, 32px, 0);
+      transition-property: opacity, transform;
+      transition-duration: 0.5s;
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+    }
+
+    .cascade-item.animate-in {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Ambient background gradient themes */
+    .bg-theme-card {
+      background: rgba(17, 26, 46, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(125, 211, 252, 0.15);
+    }
+    .bg-theme-card:active {
+      background: rgba(24, 35, 60, 0.85);
+      border-color: rgba(125, 211, 252, 0.35);
+    }
+
+    /* Dot indicator transitions */
+    .dot-indicator {
+      transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease, opacity 0.3s ease;
+      will-change: height, background-color;
+    }
+    .dot-indicator.active {
+      height: 1.5rem;
+      background-color: #7dd3fc;
+      opacity: 1;
+      box-shadow: 0 0 10px rgba(125, 211, 252, 0.6);
+    }
+
+    /* Hide scrollbars */
+    ::-webkit-scrollbar { display: none; }
+    * { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-[#030712] text-slate-100 font-sans selection:bg-sky-400 selection:text-slate-950 overflow-hidden">
+
+  <!-- Low-overhead Dynamic Cosmic Particle Canvas -->
+  <canvas id="space-canvas" width="390" height="884"></canvas>
+
+  <!-- Ambient Fluid Atmospheric Glows -->
+  <div class="fixed top-[-5%] -left-[20%] w-[80vw] h-[80vw] rounded-full bg-sky-500/12 blur-[100px] pointer-events-none z-0"></div>
+  <div class="fixed top-[45%] -right-[20%] w-[70vw] h-[70vw] rounded-full bg-indigo-600/10 blur-[100px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-5%] -left-[15%] w-[75vw] h-[75vw] rounded-full bg-cyan-400/10 blur-[100px] pointer-events-none z-0"></div>
+
+  <!-- TOP MINIMAL BORDERLESS CONTROLS -->
+  <header class="fixed top-0 left-0 right-0 z-50 px-5 pt-4 pb-2 flex items-center justify-between pointer-events-none">
+    <div class="pointer-events-auto flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-[11px] font-mono text-cyan-300 font-semibold tracking-wider">ADK LAB MOBILE</span>
     </div>
-    <a class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs font-mono text-primary border border-primary/20 flex items-center gap-1" href="index.html">
-      <span>完整版</span>
-      <span class="material-symbols-outlined text-xs">arrow_forward</span>
-    </a>
+    <div class="pointer-events-auto flex items-center gap-2">
+      <!-- Switch to Full Desktop Edition -->
+      <a class="h-8 px-3 rounded-full flex items-center gap-1.5 text-[11px] font-mono text-slate-200 bg-white/[0.08] backdrop-blur-xl border border-white/10 active:scale-95 transition-all" href="index.html?desktop=1" title="切换到完整桌面版">
+        <span>桌面完整版</span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+      </a>
+
+      <!-- Auth SSO Portal Link -->
+      <a class="w-8 h-8 rounded-full flex items-center justify-center text-sky-950 bg-gradient-to-tr from-sky-400 to-cyan-300 shadow-md shadow-sky-400/20 active:scale-95 transition-all" href="https://auth.adkfintech.com" id="login-link" target="_blank" title="Authelia 登录网关">
+        <i class="fa-solid fa-shield-halved text-xs"></i>
+      </a>
+    </div>
   </header>
 
-  <!-- Hero Card -->
-  <div class="mt-6 p-6 rounded-3xl bg-surface-container/60 backdrop-blur-2xl border border-primary/20 shadow-2xl relative overflow-hidden">
-    <div class="absolute -right-10 -top-10 w-36 h-36 rounded-full bg-primary/15 blur-2xl"></div>
-    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">ONLINE</span>
-    <h2 class="text-2xl font-black text-white mt-3 tracking-tight">探索发现更多有趣</h2>
-    <p class="text-xs text-on-surface-variant/85 font-light mt-2 leading-relaxed">
-      Develop By ADK · 6 项云端微服务稳定运行，GitHub 200+ 开源 Stars 沉淀。
-    </p>
-    <div class="mt-4 flex items-center gap-3">
-      <a class="flex-1 py-2.5 rounded-2xl bg-primary text-black font-semibold text-xs text-center shadow-lg active:scale-95 transition-transform" href="index.html#gallery-view">
-        查看项目全景 (12)
-      </a>
-      <a class="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-white text-xs font-medium flex items-center justify-center active:scale-95 transition-transform" href="https://github.com/ADKcodeXD" target="_blank">
-        <span class="material-symbols-outlined text-base">code</span>
-      </a>
+  <!-- RIGHT-SIDE FULLPAGE DOT INDICATOR -->
+  <nav class="fixed right-3.5 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-3 pointer-events-auto">
+    <button aria-label="第 1 屏 欢迎页" class="dot-indicator w-1.5 h-1.5 rounded-full hover:bg-sky-300 active" data-index="0" onclick="goToSection(0)"></button>
+    <button aria-label="第 2 屏 项目库" class="dot-indicator w-1.5 h-1.5 rounded-full hover:bg-sky-300 bg-white/30" data-index="1" onclick="goToSection(1)"></button>
+    <button aria-label="第 3 屏 关于我" class="dot-indicator w-1.5 h-1.5 rounded-full hover:bg-sky-300 bg-white/30" data-index="2" onclick="goToSection(2)"></button>
+  </nav>
+
+  <!-- FULLPAGE SLIDER (GPU Transform Translate3d - Zero Reflow) -->
+  <div id="fullpage-wrapper">
+    <div id="fullpage-track">
+      
+      <!-- SCREEN 1: HERO SECTION / 欢迎页 -->
+      <section class="snap-section flex flex-col justify-between px-6 pt-24 pb-8 z-10" id="screen-hero">
+        <div class="my-auto flex flex-col items-start text-left pl-0.5">
+          <div class="space-y-2">
+            <p class="text-sm sm:text-base font-medium tracking-wider text-cyan-300/80 font-mono uppercase">WELCOME TO</p>
+            <h1 class="text-5xl sm:text-6xl font-black tracking-tight leading-none bg-gradient-to-r from-white via-cyan-200 to-sky-300 bg-clip-text text-transparent neon-text-glow">ADK lab</h1>
+          </div>
+          <p class="mt-6 text-sm sm:text-base font-light text-slate-300 leading-relaxed max-w-xs">
+            ADK lab —— <br>
+            <span class="text-sky-300 font-medium text-base mt-1 block">探索发现更多有趣 | Develop By ADK</span>
+          </p>
+          <div class="mt-5 flex flex-wrap gap-2 text-[11px] font-mono text-slate-400">
+            <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-300">6 项在线微服务</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-purple-300">GitHub 200+★ 开源</span>
+          </div>
+        </div>
+
+        <!-- Bottom Swipe / Click Guidance -->
+        <div class="w-full flex flex-col items-start cursor-pointer pb-2 select-none" onclick="goToSection(1)">
+          <div class="flex items-center gap-3 pl-1 group">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-sky-300 bg-sky-400/10 border border-sky-400/20 animate-bounce-soft group-hover:bg-sky-400/20 transition-all">
+              <i class="fa-solid fa-arrow-down text-xs"></i>
+            </div>
+            <span class="text-[10px] font-mono tracking-[0.2em] uppercase text-sky-400/80 flex items-center gap-1.5 group-hover:text-cyan-300 transition-colors">
+              向下滚动查看项目库 <i class="fa-solid fa-angle-down text-[9px] opacity-70"></i>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: PROJECTS SECTION / 项目页 (带有真实应用 UI 截图的双列卡片流) -->
+      <section class="snap-section flex flex-col justify-between px-4 pt-16 pb-6 z-10" id="screen-projects">
+        <div>
+          <!-- Projects Header & Category Filter Tabs -->
+          <div class="flex items-center justify-between pt-1 pb-2 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8]"></span>
+              <span class="text-[11px] font-mono tracking-widest text-cyan-300 uppercase font-semibold">PROJECTS LIST</span>
+            </div>
+            <!-- Category Filter -->
+            <div class="flex items-center gap-1 text-[10px] font-mono">
+              <button class="m-filter-btn active px-2.5 py-0.5 rounded-full bg-sky-400 text-slate-950 font-bold" data-filter="all" onclick="filterMobileCards('all')">全部(12)</button>
+              <button class="m-filter-btn px-2 py-0.5 rounded-full text-slate-400 hover:text-white" data-filter="cloud" onclick="filterMobileCards('cloud')">云服务(6)</button>
+              <button class="m-filter-btn px-2 py-0.5 rounded-full text-slate-400 hover:text-white" data-filter="oss" onclick="filterMobileCards('oss')">开源(6)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Responsive Card Grid with Real Screenshots (Scrollable Container inside Snap Section) -->
+        <div class="flex-1 overflow-y-auto my-2 pr-1" id="cards-container" style="touch-action: pan-y;">
+          <div class="grid grid-cols-2 gap-2.5 pb-4" id="cards-grid">
+            
+            <!-- Project 1: ADK Quant -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-sky-500/20 active:scale-98" data-category="cloud" data-index="0" onclick="openDetailModal('quant')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/quant.jpg" alt="ADK Quant" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/30 text-emerald-300 border border-emerald-500/40">8931</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-cyan-300 font-semibold">云端服务</span>
+                    <span class="text-[9px] font-mono text-slate-500">#01</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">ADK Quant</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">资产持仓与量化监控服务</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-cyan-300">
+                  <span>FastAPI · 2FA</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2: ADK Daily News -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-sky-500/20 active:scale-98" data-category="cloud" data-index="1" onclick="openDetailModal('dailynews')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/dailynews.jpg" alt="Daily News" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/30 text-emerald-300 border border-emerald-500/40">8932</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-cyan-300 font-semibold">云端服务</span>
+                    <span class="text-[9px] font-mono text-slate-500">#02</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">ADK Daily News</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">每日 AI 资讯早报中枢</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-cyan-300">
+                  <span>LLM Pipeline</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3: VPS Traffic Panel -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-sky-500/20 active:scale-98" data-category="cloud" data-index="2" onclick="openDetailModal('traffic')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/traffic.jpg" alt="Traffic Panel" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/30 text-emerald-300 border border-emerald-500/40">8927</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-cyan-300 font-semibold">云端服务</span>
+                    <span class="text-[9px] font-mono text-slate-500">#03</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">VPS Traffic</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">VPS 节点与流量监控</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-cyan-300">
+                  <span>Xray Stats</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 4: Notification Hub -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-sky-500/20 active:scale-98" data-category="cloud" data-index="3" onclick="openDetailModal('notify')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/notify.jpg" alt="Notify Hub" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/30 text-emerald-300 border border-emerald-500/40">8933</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-cyan-300 font-semibold">云端服务</span>
+                    <span class="text-[9px] font-mono text-slate-500">#04</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">Notification Hub</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">统一消息通知推送中枢</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-cyan-300">
+                  <span>Telegram/WeCom</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 5: Authelia SSO -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-sky-500/20 active:scale-98" data-category="cloud" data-index="4" onclick="openDetailModal('auth')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/auth.jpg" alt="Authelia SSO" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/30 text-emerald-300 border border-emerald-500/40">8934</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-cyan-300 font-semibold">云端服务</span>
+                    <span class="text-[9px] font-mono text-slate-500">#05</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">Authelia SSO</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">双因素认证零信任网关</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-cyan-300">
+                  <span>Zero-Trust 2FA</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 6: Sub-Store Hub -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-sky-500/20 active:scale-98" data-category="cloud" data-index="5" onclick="openDetailModal('substore')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/substore.jpg" alt="Sub-Store" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/30 text-emerald-300 border border-emerald-500/40">3001</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-cyan-300 font-semibold">云端服务</span>
+                    <span class="text-[9px] font-mono text-slate-500">#06</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">Sub-Store Hub</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">订阅聚合与分流规则管理</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-cyan-300">
+                  <span>Clash Provider</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 7: Myblog-Vue3viteTs -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-purple-500/20 active:scale-98" data-category="oss" data-index="6" onclick="openDetailModal('myblog')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/myblog.png" alt="Myblog" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-amber-500/30 text-amber-300 border border-amber-500/40">★ 128</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-purple-300 font-semibold">GitHub 开源</span>
+                    <span class="text-[9px] font-mono text-slate-500">#07</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">Myblog</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">全功能现代化个人博客前端</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-purple-300">
+                  <span>Vue 3 + Vite</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 8: Vue3-Emoji -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-purple-500/20 active:scale-98" data-category="oss" data-index="7" onclick="openDetailModal('vue3-emoji')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/vue3-emoji.png" alt="Vue3-Emoji" class="w-full h-full object-contain p-1">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-amber-500/30 text-amber-300 border border-amber-500/40">★ 56</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-purple-300 font-semibold">GitHub 开源</span>
+                    <span class="text-[9px] font-mono text-slate-500">#08</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">Vue3-Emoji</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">轻量级高复用表情选择器</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-purple-300">
+                  <span>NPM Package</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 9: MMGC Nuxt3 Portal -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-purple-500/20 active:scale-98" data-category="oss" data-index="8" onclick="openDetailModal('mmgc')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/mmgc.jpg" alt="MMGC Nuxt3" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-amber-500/30 text-amber-300 border border-amber-500/40">★ 20</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-purple-300 font-semibold">GitHub 开源</span>
+                    <span class="text-[9px] font-mono text-slate-500">#09</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">MMGC Portal</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">黄金祭 MMGC 官方系统</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-purple-300">
+                  <span>Nuxt 3 SSR</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 10: ADKblog-backend -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-purple-500/20 active:scale-98" data-category="oss" data-index="9" onclick="openDetailModal('adkblog-backend')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/adkblog-backend.jpg" alt="ADKblog-backend" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-amber-500/30 text-amber-300 border border-amber-500/40">★ 17</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-purple-300 font-semibold">GitHub 开源</span>
+                    <span class="text-[9px] font-mono text-slate-500">#10</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">ADKblog-back</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">企业级博客服务后端系统</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-purple-300">
+                  <span>Spring Boot</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 11: Anime Audio Maker -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-purple-500/20 active:scale-98" data-category="oss" data-index="10" onclick="openDetailModal('anime-audio')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/anime-audio.jpg" alt="Anime Audio Maker" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-amber-500/30 text-amber-300 border border-amber-500/40">★ 6</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-purple-300 font-semibold">GitHub 开源</span>
+                    <span class="text-[9px] font-mono text-slate-500">#11</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">Anime Audio</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">动漫语音识别切片流水线</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-purple-300">
+                  <span>Python · VITS</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 12: EasyNote -->
+            <div class="project-card cascade-item bg-theme-card rounded-2xl overflow-hidden flex flex-col justify-between cursor-pointer border border-purple-500/20 active:scale-98" data-category="oss" data-index="11" onclick="openDetailModal('easynote')">
+              <div class="relative w-full aspect-video bg-black/60 overflow-hidden">
+                <img src="assets/img/easynote.jpg" alt="EasyNote" class="w-full h-full object-cover object-top">
+                <span class="absolute top-1.5 right-1.5 text-[8px] font-mono px-1.5 py-0.2 rounded bg-sky-500/30 text-sky-300 border border-sky-500/40">NUXT 3</span>
+              </div>
+              <div class="p-2.5 text-left flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono text-purple-300 font-semibold">GitHub 开源</span>
+                    <span class="text-[9px] font-mono text-slate-500">#12</span>
+                  </div>
+                  <h3 class="text-xs font-black text-white truncate mt-1">EasyNote</h3>
+                  <p class="text-[10px] text-slate-300/80 font-light line-clamp-2 mt-0.5 leading-snug">基于 Nuxt 3 的极简云笔记</p>
+                </div>
+                <div class="mt-2 pt-1.5 flex items-center justify-between border-t border-white/5 text-[9px] font-mono text-purple-300">
+                  <span>Markdown · Local</span>
+                  <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Mini Sub-guide to Screen 3 -->
+        <div class="w-full flex items-center justify-between text-[10px] font-mono text-slate-500 select-none cursor-pointer pt-1" onclick="goToSection(2)">
+          <span class="flex items-center gap-1.5 text-slate-400 hover:text-sky-300 transition-colors">
+            <i class="fa-solid fa-chevron-down text-[8px] animate-bounce-soft"></i> 向下滑动了解开发者
+          </span>
+          <span class="text-slate-600">PAGE 02/03</span>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: ABOUT ME SECTION / 关于我 -->
+      <section class="snap-section flex flex-col justify-between px-6 pt-20 pb-8 z-10" id="screen-about">
+        <div class="my-auto flex flex-col items-start text-left pt-2">
+          <!-- Static GitHub Avatar -->
+          <div class="flex items-center gap-4 mb-5">
+            <div class="relative">
+              <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 p-[2px] shadow-lg shadow-sky-500/20">
+                <img src="https://avatars.githubusercontent.com/u/88375547?v=4" alt="ADK" class="w-full h-full object-cover rounded-full select-none pointer-events-none">
+              </div>
+              <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-[#030712]"></span>
+            </div>
+            <div class="flex flex-col text-left">
+              <span class="text-[10px] font-mono tracking-widest text-cyan-400/80 uppercase font-semibold">CREATOR / ID</span>
+              <span class="text-xl font-mono font-black text-white tracking-wider">ADK</span>
+            </div>
+          </div>
+
+          <h3 class="text-3xl font-black text-white tracking-tight leading-snug">关于我</h3>
+          <p class="mt-3 text-sm text-slate-300 leading-relaxed font-light max-w-sm">
+            热爱极致的前端工程、低延迟后端架构与美学交互设计。构建兼具极客性能与美感的数字化体验。
+          </p>
+
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-white/5 text-slate-300 border border-white/10">TypeScript</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-white/5 text-cyan-300 border border-sky-400/20">Vue 3 / Vite</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-white/5 text-purple-300 border border-purple-400/20">Nuxt 3 SSR</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-white/5 text-slate-300 border border-white/10">Python / FastAPI</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-white/5 text-slate-300 border border-white/10">Spring Boot</span>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="mt-6 flex items-center gap-3 w-full">
+            <a class="flex-1 py-3 rounded-full bg-white/[0.08] hover:bg-white/15 active:scale-95 text-xs font-mono text-slate-200 flex items-center justify-center gap-2 border border-white/10 transition-all" href="https://github.com/ADKcodeXD" target="_blank">
+              <i class="fa-brands fa-github text-sm"></i> GitHub
+            </a>
+            <a class="flex-1 py-3 rounded-full bg-sky-400 text-slate-950 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 shadow-lg shadow-sky-400/20 transition-all" href="https://github.com/ADKcodeXD?tab=repositories" target="_blank">
+              <span>开源仓库集</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Screen 3 Footer -->
+        <footer class="w-full pt-4 text-left border-t border-white/5">
+          <div class="flex items-center justify-between">
+            <p class="text-[10px] font-mono text-slate-500">© 2026 ADK LAB · adkfintech.com</p>
+            <button class="text-[10px] font-mono text-cyan-400 flex items-center gap-1 hover:underline" onclick="goToSection(0)">
+              回顶 <i class="fa-solid fa-arrow-up text-[9px]"></i>
+            </button>
+          </div>
+        </footer>
+      </section>
+
     </div>
   </div>
 
-  <!-- Category 1: Cloud Services -->
-  <div class="mt-8">
-    <div class="flex items-center justify-between mb-3 px-1">
-      <h3 class="text-xs font-mono uppercase tracking-wider text-primary font-semibold flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-        本机云端微服务 (6)
-      </h3>
-      <span class="text-[10px] font-mono text-on-surface-variant/60">Active 24/7</span>
-    </div>
-
-    <div class="space-y-3">
-      <!-- Item 1 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://quant.adkfintech.com" target="_blank">
-        <img src="assets/img/quant.jpg" alt="Quant" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-white truncate">ADK Quant</div>
-          <div class="text-[11px] text-on-surface-variant/75 truncate">资产持仓与量化监控 · Port 8931</div>
+  <!-- MODAL: Project Detail (Mobile Bottom Sheet / Glassmorphism Dialog) -->
+  <div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-2xl transition-opacity duration-300 hidden" id="detail-modal">
+    <div class="relative w-full max-w-md max-h-[85vh] overflow-y-auto p-5 rounded-t-3xl sm:rounded-3xl bg-[#090e1a]/98 backdrop-blur-2xl border-t border-sky-400/30 sm:border sm:border-sky-400/25 shadow-2xl transition-all" id="detail-modal-box">
+      <div class="w-10 h-1 rounded-full bg-slate-700 mx-auto mb-3 sm:hidden cursor-pointer" onclick="closeDetailModal()"></div>
+      
+      <!-- Top Modal Header -->
+      <div class="flex items-center justify-between w-full pb-2">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold tracking-wider bg-sky-400/10 text-cyan-300 border border-sky-400/20" id="modal-cat-badge">云端服务</span>
+          <span class="text-[10px] font-mono text-slate-400 font-medium" id="modal-id-badge">#01</span>
         </div>
-        <span class="material-symbols-outlined text-sm text-primary flex-shrink-0">arrow_forward</span>
-      </a>
+        <button aria-label="关闭" class="w-8 h-8 rounded-full bg-white/[0.08] hover:bg-white/15 text-slate-400 hover:text-white active:scale-90 flex items-center justify-center transition-all" onclick="closeDetailModal()">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
 
-      <!-- Item 2 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://dailynews.adkfintech.com" target="_blank">
-        <img src="assets/img/dailynews.jpg" alt="DailyNews" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-white truncate">ADK Daily News</div>
-          <div class="text-[11px] text-on-surface-variant/75 truncate">每日 AI 早报与资讯聚合 · Port 8932</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-secondary flex-shrink-0">arrow_forward</span>
-      </a>
+      <!-- Real UI Screenshot Preview inside Modal -->
+      <div class="mt-2 w-full aspect-video rounded-xl overflow-hidden bg-black/60 border border-white/10 shadow-lg">
+        <img src="assets/img/quant.jpg" alt="Screenshot" class="w-full h-full object-cover object-top" id="modal-img">
+      </div>
 
-      <!-- Item 3 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://traffic.adkfintech.com" target="_blank">
-        <img src="assets/img/traffic.jpg" alt="Traffic" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-white truncate">VPS Traffic Panel</div>
-          <div class="text-[11px] text-on-surface-variant/75 truncate">VPS 节点与流量实时监控 · Port 8927</div>
+      <div class="mt-3 text-left">
+        <div class="flex items-baseline gap-2">
+          <h3 class="text-xl font-black text-white tracking-tight" id="modal-title">ADK Quant</h3>
+          <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold text-cyan-300 bg-white/[0.05] border border-white/10" id="modal-version">v2.4.0</span>
         </div>
-        <span class="material-symbols-outlined text-sm text-primary flex-shrink-0">arrow_forward</span>
-      </a>
+        <div class="mt-1 flex items-center gap-2">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
+          <span class="text-[11px] font-mono text-emerald-400/90 tracking-wide" id="modal-status-text">运行正常 · 100% 在线</span>
+        </div>
+        <p class="text-xs text-slate-300/90 mt-2.5 leading-relaxed font-light" id="modal-desc">项目描述加载中...</p>
+        <div class="mt-3 flex flex-wrap gap-1.5" id="modal-features"></div>
+      </div>
 
-      <!-- Item 4 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://notify.adkfintech.com" target="_blank">
-        <img src="assets/img/notify.jpg" alt="Notify" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-white truncate">Notification Hub</div>
-          <div class="text-[11px] text-on-surface-variant/75 truncate">统一消息推送与告警中心 · Port 8933</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-tertiary flex-shrink-0">arrow_forward</span>
-      </a>
-
-      <!-- Item 5 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://auth.adkfintech.com" target="_blank">
-        <img src="assets/img/auth.jpg" alt="Auth" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-white truncate">Authelia SSO</div>
-          <div class="text-[11px] text-on-surface-variant/75 truncate">双因素认证与零信任网关 · Port 8934</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-tertiary flex-shrink-0">arrow_forward</span>
-      </a>
-
-      <!-- Item 6 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://sub.adkproxy.top" target="_blank">
-        <img src="assets/img/substore.jpg" alt="SubStore" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-white truncate">Sub-Store Hub</div>
-          <div class="text-[11px] text-on-surface-variant/75 truncate">订阅转换与节点规则管理 · Port 3001</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-secondary flex-shrink-0">arrow_forward</span>
-      </a>
+      <div class="mt-5 pt-3 border-t border-white/10 flex items-center justify-between gap-3">
+        <button class="px-4 py-2.5 rounded-full bg-white/[0.08] hover:bg-white/15 active:scale-95 text-xs text-slate-300 font-medium transition-all" onclick="closeDetailModal()">关闭</button>
+        <a class="px-5 py-2.5 rounded-full bg-gradient-to-r from-sky-400 to-cyan-300 text-slate-950 text-xs font-black tracking-wide shadow-lg shadow-sky-400/25 active:scale-95 transition-all flex items-center gap-1.5" href="#" id="modal-launch-btn" target="_blank">
+          <span>直接访问</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Category 2: GitHub Open Source -->
-  <div class="mt-8">
-    <div class="flex items-center justify-between mb-3 px-1">
-      <h3 class="text-xs font-mono uppercase tracking-wider text-tertiary font-semibold flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-        GitHub 开源代表作 (6)
-      </h3>
-      <span class="text-[10px] font-mono text-on-surface-variant/60">Featured OSS</span>
-    </div>
+  <!-- JAVASCRIPT: Stitch Fullpage Slider Engine & Real Project Data -->
+  <script>
+    // 1. Ambient Cosmic Particle Canvas
+    const canvas = document.getElementById('space-canvas');
+    const ctx = canvas.getContext('2d', { alpha: true });
+    let width, height;
+    let particles = [];
+    let isSliding = false;
 
-    <div class="space-y-3">
-      <!-- OSS 1 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/Myblog-Vue3viteTs" target="_blank">
-        <img src="assets/img/myblog.png" alt="Myblog" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white truncate">Myblog-Vue3viteTs</span>
-            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 128</span>
-          </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">现代化个人博客平台 · Vue 3 + Vite</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-primary flex-shrink-0">open_in_new</span>
-      </a>
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    resizeCanvas();
 
-      <!-- OSS 2 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/Vue3-Emoji" target="_blank">
-        <img src="assets/img/vue3-emoji.png" alt="Vue3 Emoji" class="w-14 h-14 rounded-xl object-contain bg-black/40 border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white truncate">Vue3-Emoji</span>
-            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 56</span>
-          </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">轻量级高复用表情选择器组件库</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-tertiary flex-shrink-0">open_in_new</span>
-      </a>
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 1.5 + 0.4;
+        this.alpha = Math.random() * 0.5 + 0.15;
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.vy = -(Math.random() * 0.35 + 0.12);
+        this.color = Math.random() > 0.4 ? '#7dd3fc' : '#ffffff';
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.y < 0) this.y = height;
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.alpha;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+      }
+    }
 
-      <!-- OSS 3 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/MMGC-frontend" target="_blank">
-        <img src="assets/img/mmgc.jpg" alt="MMGC" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white truncate">MMGC Nuxt3 Portal</span>
-            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 20</span>
-          </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">黄金祭 MMGC 官网 · Nuxt 3 SSR</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-secondary flex-shrink-0">open_in_new</span>
-      </a>
+    for (let i = 0; i < 32; i++) particles.push(new Particle());
 
-      <!-- OSS 4 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/ADKblog-backend" target="_blank">
-        <img src="assets/img/adkblog-backend.jpg" alt="ADKblog backend" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white truncate">ADKblog-backend</span>
-            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 17</span>
-          </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">企业级博客服务后端 · Spring Boot</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-primary flex-shrink-0">open_in_new</span>
-      </a>
+    function animateParticles() {
+      if (!isSliding) {
+        ctx.clearRect(0, 0, width, height);
+        for (let p of particles) {
+          p.update();
+          p.draw();
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
 
-      <!-- OSS 5 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/Anime-Audio-Dataset-Maker" target="_blank">
-        <img src="assets/img/anime-audio.jpg" alt="Anime Audio Maker" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white truncate">Anime Audio Maker</span>
-            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-amber-500/20 text-amber-300 flex-shrink-0">★ 6</span>
-          </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">动漫语音识别与训练切片流水线</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-tertiary flex-shrink-0">open_in_new</span>
-      </a>
+    // 2. Stitch Transform Fullpage Slider
+    const track = document.getElementById('fullpage-track');
+    const sections = document.querySelectorAll('.snap-section');
+    const dots = document.querySelectorAll('.dot-indicator');
+    const projectCards = document.querySelectorAll('#cards-grid .cascade-item');
+    let currentSectionIndex = 0;
+    let isNavigating = false;
+    let slideResetTimer = null;
 
-      <!-- OSS 6 -->
-      <a class="p-3.5 rounded-2xl bg-surface-container/50 border border-white/5 flex items-center justify-between active:scale-98 transition-transform gap-3" href="https://github.com/ADKcodeXD/EasyNote" target="_blank">
-        <img src="assets/img/easynote.jpg" alt="EasyNote" class="w-14 h-14 rounded-xl object-cover object-top border border-white/10 flex-shrink-0">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white truncate">EasyNote</span>
-            <span class="px-1.5 py-0.2 text-[9px] font-mono rounded bg-secondary/20 text-secondary flex-shrink-0">NUXT 3</span>
-          </div>
-          <div class="text-[11px] text-on-surface-variant/75 mt-0.5 truncate">极简跨端云笔记 · Local-First</div>
-        </div>
-        <span class="material-symbols-outlined text-sm text-secondary flex-shrink-0">open_in_new</span>
-      </a>
-    </div>
-  </div>
+    function triggerCardsAnimation(enter) {
+      if (enter) {
+        projectCards.forEach(card => card.classList.remove('animate-in'));
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            projectCards.forEach(card => card.classList.add('animate-in'));
+          });
+        });
+      } else {
+        projectCards.forEach(card => card.classList.remove('animate-in'));
+      }
+    }
 
-  <!-- Footer -->
-  <footer class="mt-12 text-center text-[11px] font-mono text-on-surface-variant/50 border-t border-white/5 pt-6">
-    © 2026 ADK lab · Develop By ADK
-  </footer>
+    function goToSection(index) {
+      if (index < 0 || index >= sections.length || isNavigating) return;
+      if (index === currentSectionIndex) return;
 
+      isNavigating = true;
+      isSliding = true;
+      clearTimeout(slideResetTimer);
+
+      const prevIndex = currentSectionIndex;
+      currentSectionIndex = index;
+
+      track.style.transform = `translate3d(0, -${index * 100}vh, 0)`;
+
+      dots.forEach((dot, idx) => {
+        if (idx === index) {
+          dot.classList.add('active');
+          dot.classList.remove('bg-white/30');
+        } else {
+          dot.classList.remove('active');
+          dot.classList.add('bg-white/30');
+        }
+      });
+
+      if (index === 1) {
+        triggerCardsAnimation(true);
+      } else if (prevIndex === 1) {
+        triggerCardsAnimation(false);
+      }
+
+      slideResetTimer = setTimeout(() => {
+        isNavigating = false;
+        isSliding = false;
+      }, 660);
+    }
+
+    // Touch Swipe Gesture Listener (Only navigates if user is not scrolling inside the cards container)
+    let touchStartY = 0;
+    let touchStartX = 0;
+    const cardsContainer = document.getElementById('cards-container');
+
+    window.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      const modal = document.getElementById('detail-modal');
+      if (modal && !modal.classList.contains('hidden')) return;
+
+      const deltaY = touchStartY - e.changedTouches[0].clientY;
+      const deltaX = touchStartX - e.changedTouches[0].clientX;
+
+      // In section 1 (projects grid), only swipe if at top or bottom edge
+      if (currentSectionIndex === 1 && cardsContainer) {
+        const atTop = cardsContainer.scrollTop <= 5;
+        const atBottom = cardsContainer.scrollTop + cardsContainer.clientHeight >= cardsContainer.scrollHeight - 5;
+        
+        if (deltaY > 40 && atBottom && currentSectionIndex < sections.length - 1) {
+          goToSection(currentSectionIndex + 1);
+        } else if (deltaY < -40 && atTop && currentSectionIndex > 0) {
+          goToSection(currentSectionIndex - 1);
+        }
+        return;
+      }
+
+      // In other sections, normal vertical swipe
+      if (Math.abs(deltaY) > 35 && Math.abs(deltaY) > Math.abs(deltaX) * 1.25) {
+        if (deltaY > 0 && currentSectionIndex < sections.length - 1) {
+          goToSection(currentSectionIndex + 1);
+        } else if (deltaY < 0 && currentSectionIndex > 0) {
+          goToSection(currentSectionIndex - 1);
+        }
+      }
+    }, { passive: true });
+
+    // Wheel listener for desktop
+    let lastWheelTime = 0;
+    window.addEventListener('wheel', (e) => {
+      const modal = document.getElementById('detail-modal');
+      if (modal && !modal.classList.contains('hidden')) return;
+
+      const now = Date.now();
+      if (now - lastWheelTime < 680) return;
+
+      if (currentSectionIndex === 1 && cardsContainer) {
+        const atTop = cardsContainer.scrollTop <= 5;
+        const atBottom = cardsContainer.scrollTop + cardsContainer.clientHeight >= cardsContainer.scrollHeight - 5;
+        if (e.deltaY > 20 && atBottom && currentSectionIndex < sections.length - 1) {
+          lastWheelTime = now;
+          goToSection(currentSectionIndex + 1);
+        } else if (e.deltaY < -20 && atTop && currentSectionIndex > 0) {
+          lastWheelTime = now;
+          goToSection(currentSectionIndex - 1);
+        }
+        return;
+      }
+
+      if (Math.abs(e.deltaY) > 20) {
+        if (e.deltaY > 0 && currentSectionIndex < sections.length - 1) {
+          lastWheelTime = now;
+          goToSection(currentSectionIndex + 1);
+        } else if (e.deltaY < 0 && currentSectionIndex > 0) {
+          lastWheelTime = now;
+          goToSection(currentSectionIndex - 1);
+        }
+      }
+    }, { passive: true });
+
+    // 3. Project Filter Tabs
+    function filterMobileCards(cat) {
+      document.querySelectorAll('.m-filter-btn').forEach(b => {
+        b.className = 'm-filter-btn px-2 py-0.5 rounded-full text-slate-400 hover:text-white';
+      });
+      event.target.className = 'm-filter-btn active px-2.5 py-0.5 rounded-full bg-sky-400 text-slate-950 font-bold';
+
+      projectCards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (cat === 'all' || cardCat === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 4. Real Project Data Dictionary for Modal Bottom Sheet
+    const mobileProjectData = {
+      'quant': {
+        title: 'ADK Quant',
+        cat: '云端微服务',
+        id: '#01',
+        version: 'PORT 8931',
+        status: '运行正常 · 100% 在线',
+        img: 'assets/img/quant.jpg',
+        desc: '个人量化资产与实时持仓监控平台。集中纳管多账户资产净值、策略盈亏跟踪、自动化风控告警与实时可视化图表。',
+        features: ['Python 3', 'FastAPI', 'WebSocket', 'Authelia 2FA', 'Sharpe 2.84'],
+        url: 'https://quant.adkfintech.com'
+      },
+      'dailynews': {
+        title: 'ADK Daily News',
+        cat: '云端微服务',
+        id: '#02',
+        version: 'PORT 8932',
+        status: '定时运行 · 每日早报',
+        img: 'assets/img/dailynews.jpg',
+        desc: '基于 LLM 与自动化 Webhook 的每日资讯智能聚合平台。自动化抓取全球财经、前沿科技与行业趋势，通过多渠道自动化分发。',
+        features: ['FastAPI', 'LLM Pipeline', 'Telegram Bot', 'WeCom Push'],
+        url: 'https://dailynews.adkfintech.com'
+      },
+      'traffic': {
+        title: 'VPS Traffic Panel',
+        cat: '云端微服务',
+        id: '#03',
+        version: 'PORT 8927',
+        status: '毫秒级感知 · 运行正常',
+        img: 'assets/img/traffic.jpg',
+        desc: '高性能 VPS 网络负载与节点流量实时看板。直接对接 Xray 内核与时序统计数据库，提供毫秒级带宽监控与周期配额统计。',
+        features: ['Python 3', 'Xray Stats', 'TimeSeries DB', 'Bandwidth Mesh'],
+        url: 'https://traffic.adkfintech.com'
+      },
+      'notify': {
+        title: 'Notification Hub',
+        cat: '云端微服务',
+        id: '#04',
+        version: 'PORT 8933',
+        status: '运行正常 · 统一网关',
+        img: 'assets/img/notify.jpg',
+        desc: '高可用统一消息路由与警报分发中枢。统筹管理 Telegram、企业微信、飞书以及邮件等多协议通道，提供标准 RESTful Webhook。',
+        features: ['Alert Router', 'Async Queue', 'Retry Fallback', 'Multi-Channel'],
+        url: 'https://notify.adkfintech.com'
+      },
+      'auth': {
+        title: 'Authelia SSO',
+        cat: '云端微服务',
+        id: '#05',
+        version: 'PORT 8934',
+        status: '零信任保护 · TLS 1.3',
+        img: 'assets/img/auth.jpg',
+        desc: '基于 Nginx Forward-Auth 的企业级身份鉴权中枢。为私有微服务提供双因素认证 (2FA TOTP) 与严格访问控制。',
+        features: ['Zero-Trust', 'Forward-Auth', 'TOTP 2FA', 'Security Shield'],
+        url: 'https://auth.adkfintech.com'
+      },
+      'substore': {
+        title: 'Sub-Store Hub',
+        cat: '云端微服务',
+        id: '#06',
+        version: 'PORT 3001',
+        status: '运行正常 · 订阅分流',
+        img: 'assets/img/substore.jpg',
+        desc: '高级节点订阅聚合、智能清洗与分流规则管理中心。支持多协议节点在线测速、正则过滤与 Clash / Surge 策略组编排。',
+        features: ['Docker', 'Clash Provider', 'Node Regex Clean', 'Dynamic Speedtest'],
+        url: 'https://sub.adkproxy.top'
+      },
+      'myblog': {
+        title: 'Myblog-Vue3viteTs',
+        cat: 'GitHub 开源',
+        id: '#07',
+        version: '★ 128 STARS',
+        status: '活跃维护 · 开源代表作',
+        img: 'assets/img/myblog.png',
+        desc: '基于 Vue 3 + Vite + TypeScript 构建的高性能博客系统。内置 Markdown 深度解析渲染、代码高亮与暗色模式。',
+        features: ['Vue 3', 'Vite', 'TypeScript', 'Pinia', 'Markdown Engine'],
+        url: 'https://github.com/ADKcodeXD/Myblog-Vue3viteTs'
+      },
+      'vue3-emoji': {
+        title: 'Vue3-Emoji',
+        cat: 'GitHub 开源',
+        id: '#08',
+        version: '★ 56 STARS',
+        status: 'NPM Package · 开源组件',
+        img: 'assets/img/vue3-emoji.png',
+        desc: '基于 Vue 3 + Vite 构建的现代化表情选择器组件。支持多肤色自由切换、拼音及英文模糊搜索与自定义插槽。',
+        features: ['Vue 3 Component', 'TypeScript', 'NPM Package', 'Skin Tone'],
+        url: 'https://github.com/ADKcodeXD/Vue3-Emoji'
+      },
+      'mmgc': {
+        title: 'MMGC Nuxt3 Portal',
+        cat: 'GitHub 开源',
+        id: '#09',
+        version: '★ 20 STARS',
+        status: 'Nuxt 3 SSR · 黄金祭官网',
+        img: 'assets/img/mmgc.jpg',
+        desc: '黄金祭 MMGC 官方网站系统。采用 Nuxt 3 正式版全栈开发，具备 SSR 服务端渲染、Element Plus 定制与多语言 i18n。',
+        features: ['Nuxt 3', 'SSR Nitro', 'Element Plus', 'vue-i18n'],
+        url: 'https://github.com/ADKcodeXD/MMGC-frontend'
+      },
+      'adkblog-backend': {
+        title: 'ADKblog-backend',
+        cat: 'GitHub 开源',
+        id: '#10',
+        version: '★ 17 STARS',
+        status: 'Spring Boot · 企业后端',
+        img: 'assets/img/adkblog-backend.jpg',
+        desc: '现代化博客服务后端架构，基于 Java Spring Boot 构建。具备 RBAC 权限控制、JWT 无状态鉴权与 Redis 缓存层。',
+        features: ['Java 11+', 'Spring Boot', 'JWT Auth', 'Redis Cache'],
+        url: 'https://github.com/ADKcodeXD/ADKblog-backend'
+      },
+      'anime-audio': {
+        title: 'Anime Audio Maker',
+        cat: 'GitHub 开源',
+        id: '#11',
+        version: '★ 6 STARS',
+        status: 'VITS 训练集 · 自动切片',
+        img: 'assets/img/anime-audio.jpg',
+        desc: '专为语音合成训练集构建的自动化工具。具备说话人聚类识别、静音自动切片与标准化导出能力。',
+        features: ['Python', 'Speaker Diarization', 'VAD Slicing', 'VITS Dataset'],
+        url: 'https://github.com/ADKcodeXD/Anime-Audio-Dataset-Maker'
+      },
+      'easynote': {
+        title: 'EasyNote',
+        cat: 'GitHub 开源',
+        id: '#12',
+        version: 'NUXT 3 APP',
+        status: '本地优先 · 极简笔记',
+        img: 'assets/img/easynote.jpg',
+        desc: '基于 Nuxt 3 的极简跨端云笔记。具备分屏 Markdown 编辑、离线持久化草稿与自适应多端排版。',
+        features: ['Nuxt 3', 'Markdown Parser', 'LocalStorage', 'Responsive'],
+        url: 'https://github.com/ADKcodeXD/EasyNote'
+      }
+    };
+
+    // 5. Open / Close Detail Modal Bottom Sheet
+    window.openDetailModal = function(projectId) {
+      const data = mobileProjectData[projectId];
+      if (!data) return;
+
+      document.getElementById('modal-title').textContent = data.title;
+      document.getElementById('modal-desc').textContent = data.desc;
+      document.getElementById('modal-cat-badge').textContent = data.cat;
+      document.getElementById('modal-id-badge').textContent = data.id;
+      document.getElementById('modal-version').textContent = data.version;
+      document.getElementById('modal-status-text').textContent = data.status;
+      document.getElementById('modal-img').src = data.img;
+
+      const featContainer = document.getElementById('modal-features');
+      featContainer.innerHTML = data.features.map(f => 
+        `<span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-white/[0.06] text-slate-300 border border-white/5">${f}</span>`
+      ).join('');
+
+      const launchBtn = document.getElementById('modal-launch-btn');
+      launchBtn.href = data.url;
+
+      document.getElementById('detail-modal').classList.remove('hidden');
+    };
+
+    window.closeDetailModal = function() {
+      document.getElementById('detail-modal').classList.add('hidden');
+    };
+
+    document.getElementById('detail-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeDetailModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeDetailModal();
+    });
+  </script>
 </body>
 </html>
