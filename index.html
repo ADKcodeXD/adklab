@@ -1219,23 +1219,23 @@
             const floatBadge = sec.querySelector('.parallax-float');
             const content = sec.querySelector('.parallax-content');
 
-            // Downward translation on visual mockup
+            // Downward parallax lag on visual mockup
             if (visual) {
-              const translateY = centerDelta * factor;
-              const rotateX = Math.max(-6, Math.min(6, -centerDelta * 0.008));
+              const translateY = -centerDelta * factor;
+              const rotateX = Math.max(-5, Math.min(5, centerDelta * 0.006));
               visual.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) rotateX(${rotateX.toFixed(2)}deg)`;
             }
 
             // Differential opposite translation on floating badge
             if (floatBadge) {
-              const badgeY = centerDelta * -0.22;
-              const badgeX = centerDelta * 0.05;
+              const badgeY = -centerDelta * -0.18;
+              const badgeX = centerDelta * 0.04;
               floatBadge.style.transform = `translate3d(${badgeX.toFixed(2)}px, ${badgeY.toFixed(2)}px, 30px)`;
             }
 
             // Subtle narrative text drift
             if (content) {
-              const contentY = centerDelta * -0.05;
+              const contentY = -centerDelta * 0.04;
               content.style.transform = `translate3d(0, ${contentY.toFixed(2)}px, 0)`;
             }
           }
