@@ -35,12 +35,14 @@
 
 | 服务名称 | 运行端口 / 架构 | 线上访问地址 | 核心功能简介 |
 | :--- | :--- | :--- | :--- |
-| **ADK Quant** | Port 8931 · Python FastAPI | [`quant.adkfintech.com`](https://quant.adkfintech.com) | 个人量化资产与持仓监控服务，多账户净值归集、策略盈亏跟踪与自动化风控告警。 |
-| **ADK Daily News** | Port 8932 · Python Webhook | [`dailynews.adkfintech.com`](https://dailynews.adkfintech.com) | 基于 LLM 的自动化 AI 资讯早报平台，聚合全球科技与财经动态，多渠道分发。 |
-| **Notification Hub** | Port 8933 · Python Async | [`notify.adkfintech.com`](https://notify.adkfintech.com) | 统一通知推送与告警中心，纳管 Telegram Bot、企业微信、飞书与邮件通道。 |
-| **VPS Traffic Panel** | Port 8927 · Python / SQLite | [`traffic.adkfintech.com`](https://traffic.adkfintech.com) | VPS 节点与网络流量实时监控看板，对接 Xray 内核，提供高精度时序统计。 |
-| **Authelia SSO** | Port 8934 · Go Zero-Trust | [`auth.adkfintech.com`](https://auth.adkfintech.com) | 企业级单点登录与零信任网关，提供双因素认证 (2FA) 与 Nginx Forward-Auth 鉴权。 |
-| **Sub-Store Hub** | Port 3001 · Docker | [`sub.adkproxy.top`](https://sub.adkproxy.top) | 高级订阅转换与规则管理中枢，支持多协议节点自动测速、清洗与分流编排。 |
+| **ADK Quant** | Python FastAPI · WebSocket | [`quant.adkfintech.com`](https://quant.adkfintech.com) | 个人量化资产与持仓监控服务，多账户净值归集、策略盈亏跟踪与自动化风控告警。 |
+| **ADK Daily News** | Python Webhook · LLM | [`dailynews.adkfintech.com`](https://dailynews.adkfintech.com) | 基于 LLM 的自动化 AI 资讯早报平台，聚合全球科技与财经动态，多渠道分发。 |
+| **Notification Hub** | Python Async · Multi-Channel | [`notify.adkfintech.com`](https://notify.adkfintech.com) | 统一通知推送与告警中心，纳管 Telegram Bot、企业微信、飞书与邮件通道。 |
+| **VPS Traffic Panel** | Python / SQLite TimeSeries | [`traffic.adkfintech.com`](https://traffic.adkfintech.com) | VPS 节点与网络流量实时监控看板，对接 Xray 内核，提供高精度时序统计。 |
+| **Authelia SSO** | Go Zero-Trust · 2FA TOTP | [`auth.adkfintech.com`](https://auth.adkfintech.com) | 企业级单点登录与零信任网关，提供双因素认证 (2FA) 与 Nginx Forward-Auth 鉴权。 |
+| **Sub-Store Hub** | Docker · Rule Engine | [`sub.adkproxy.top`](https://sub.adkproxy.top) | 高级订阅转换与规则管理中枢，支持多协议节点自动测速、清洗与分流编排。 |
+| **RectCanvas 坐标生成器** | React · Canvas · Frame Generator | [`position.adkfintech.com`](https://position.adkfintech.com) | 专为 Seedance GPTimage 与图像生成量身定制的可视化定位坐标工具，支持框选标注与 JSON 导出。 |
+| **CV Ranking 声优总榜** | Web Analytics · Data Visualization | [`cvranking.adkfintech.com`](https://cvranking.adkfintech.com) | 日本业界声优前 200 影响力与作品大数据分析排行大屏，多维度综合加权与热度趋势。 |
 
 ---
 
@@ -50,10 +52,12 @@
 | :--- | :--- | :--- | :--- |
 | **Myblog-Vue3viteTs** | `Vue 3` · `Vite` · `TypeScript` | [ADKcodeXD/Myblog-Vue3viteTs](https://github.com/ADKcodeXD/Myblog-Vue3viteTs) | **★ 128 Stars** 全功能现代化个人博客平台，深度 Markdown 解析、暗色模式与极致流畅动效。 |
 | **Vue3-Emoji** | `Vue 3` · `TypeScript` · `NPM` | [ADKcodeXD/Vue3-Emoji](https://github.com/ADKcodeXD/Vue3-Emoji) | **★ 56 Stars** 轻量级高复用 Vue 3 表情选择器，支持多肤色快速切换与拼音模糊搜索。 |
-| **MMGC-frontend** | `Nuxt 3` · `Element Plus` · `SSR` | [ADKcodeXD/MMGC-frontend](https://github.com/ADKcodeXD/MMGC-frontend) | **★ 20 Stars** 黄金祭 MMGC 官方网站系统，Nitro 服务端同构渲染与全站国际化 (i18n)。 |
+| **MMGC-Project** | `Nuxt 3` · `Element Plus` · `SSR` | [ADKcodeXD/MMGC-Project](https://github.com/ADKcodeXD/MMGC-Project) | **★ 20 Stars** 黄金祭 MMGC 官方网站系统，Nitro 服务端同构渲染与全站国际化 (i18n)。 |
 | **ADKblog-backend** | `Spring Boot` · `Redis` · `JWT` | [ADKcodeXD/ADKblog-backend](https://github.com/ADKcodeXD/ADKblog-backend) | **★ 17 Stars** 企业级个人博客后端系统，RBAC 细粒度权限控制与基于 Redis 的高频缓存层。 |
 | **Anime-Audio-Dataset-Maker** | `Python` · `VITS` · `VAD` | [ADKcodeXD/Anime-Audio-Dataset-Maker](https://github.com/ADKcodeXD/Anime-Audio-Dataset-Maker) | **★ 6 Stars** 动漫语音识别与训练切片自动化流水线，专为语音合成模型数据集制作打磨。 |
 | **EasyNote** | `Nuxt 3` · `Local-First` | [ADKcodeXD/EasyNote](https://github.com/ADKcodeXD/EasyNote) | 基于 Nuxt 3 的极简云端通用笔记应用，分屏 Markdown 书写、离线持久化与极简排版。 |
+| **Coordinate-based-Frame-Generator** | `React` · `Canvas` · `TypeScript` | [ADKcodeXD/Coordinate-based-Frame-Generator](https://github.com/ADKcodeXD/Coordinate-based-Frame-Generator) | 用于生成 Seedance GPTimage 的定位坐标，支持高精度矩形画布拖拽与选区 JSON 导出。 |
+| **japanese-voice-actor-ranking** | `JavaScript` · `Data Analytics` | [ADKcodeXD/japanese-voice-actor-ranking](https://github.com/ADKcodeXD/japanese-voice-actor-ranking) | 日本声优前 200 排行榜大数据分析展示项目。 |
 
 ---
 

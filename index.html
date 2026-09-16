@@ -129,7 +129,7 @@
 <body class="bg-background font-body text-on-surface antialiased selection:bg-primary/25 selection:text-primary min-h-screen relative">
 
   <!-- Dynamic Starfield Ambient Background -->
-  <canvas class="fixed inset-0 pointer-events-none z-0 opacity-40" id="ambient-canvas"></canvas>
+  <canvas class="fixed inset-0 pointer-events-none z-0" id="ambient-canvas"></canvas>
 
   <!-- Interactive Parallax Ambient Glow Orbs -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="parallax-glow-root">
@@ -157,7 +157,7 @@
     <a class="mobile-nav-chip px-2.5 py-1 rounded-full text-[11px] font-mono text-on-surface-variant" data-target="project-04" href="#project-04">04 Infra</a>
     <button class="px-3 py-1 rounded-full text-[11px] font-mono bg-primary text-on-primary font-semibold flex items-center gap-1 active:scale-95" id="mobile-open-gallery-btn" type="button">
       <span class="material-symbols-outlined text-xs">grid_view</span>
-      <span>全部(12)</span>
+      <span>全部(14)</span>
     </button>
   </div>
 
@@ -167,12 +167,6 @@
     <!-- 1. HERO SECTION -->
     <section class="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 lg:px-16 pt-12 sm:pt-16 pb-16 z-10" id="hero">
       <div class="max-w-5xl mx-auto w-full flex flex-col items-center text-center relative z-10" id="hero-content">
-        <!-- Pre-title Tag -->
-        <div class="mb-4 inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/5 border border-primary/25 backdrop-blur-md">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-[11px] sm:text-xs md:text-sm font-mono tracking-[0.2em] sm:tracking-[0.25em] text-primary uppercase font-medium">LIVE PORTAL &amp; ECOSYSTEM</span>
-        </div>
-        
         <!-- Headline -->
         <h1 class="text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] font-headline font-black tracking-tighter leading-none select-none text-transparent bg-clip-text bg-gradient-to-b from-white via-white/95 to-white/40 text-glow" id="hero-title">
           ADK <span class="font-extralight tracking-tight text-primary">lab</span>
@@ -187,7 +181,7 @@
         <div class="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[11px] sm:text-xs font-mono text-on-surface-variant/80 px-2" id="hero-badges">
           <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 flex items-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-            6 Active Cloud Services
+            8 Active Cloud Services
           </span>
           <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 flex items-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
@@ -204,7 +198,7 @@
           <button class="w-full sm:w-auto group relative px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-surface-container/70 hover:bg-surface-container-high/90 backdrop-blur-2xl text-white font-medium text-sm sm:text-base tracking-wide flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_0_35px_rgba(125,211,252,0.35)] border border-primary/30 active:scale-95" id="open-gallery-btn" type="button">
             <span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform"></span>
             <span class="material-symbols-outlined text-primary text-lg sm:text-xl">grid_view</span>
-            <span>浏览所有项目与服务 (12)</span>
+            <span>浏览所有项目与服务 (14)</span>
           </button>
           
           <a class="w-full sm:w-auto px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-white/5 hover:bg-white/10 text-white font-medium text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 transition-all duration-300 border border-white/10 active:scale-95" href="https://github.com/ADKcodeXD" rel="noopener noreferrer" target="_blank">
@@ -230,8 +224,8 @@
         <div class="lg:col-span-5 flex flex-col items-start text-left parallax-content">
           <div class="flex items-center gap-2.5 sm:gap-3">
             <span class="text-xs font-mono text-primary tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold">01 / QUANT &amp; ASSETS</span>
-            <span class="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_#7dd3fc]"></span>
-            <span class="text-[11px] sm:text-xs font-mono text-on-surface-variant/70">LIVE · PORT 8931</span>
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+            <span class="text-[11px] sm:text-xs font-mono text-emerald-400 font-medium">ONLINE</span>
           </div>
           <h2 class="text-3xl sm:text-5xl lg:text-6xl font-headline font-black text-white tracking-tight mt-3 sm:mt-4 leading-none">
             ADK Quant
@@ -267,7 +261,7 @@
                 <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
                 <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
                 <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-                <span class="text-xs font-mono text-on-surface-variant/80 ml-2 truncate max-w-[200px] sm:max-w-none">quant.adkfintech.com · PORT 8931</span>
+                <span class="text-xs font-mono text-on-surface-variant/80 ml-2 truncate max-w-[200px] sm:max-w-none">quant.adkfintech.com</span>
               </div>
               <div class="flex items-center gap-1.5 text-[11px] sm:text-xs font-mono text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/20">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
@@ -375,8 +369,8 @@
         <div class="lg:col-span-5 flex flex-col items-start text-left parallax-content">
           <div class="flex items-center gap-2.5 sm:gap-3">
             <span class="text-xs font-mono text-secondary tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold">03 / AI INTELLIGENCE</span>
-            <span class="h-1.5 w-1.5 rounded-full bg-secondary shadow-[0_0_8px_#88b4cc]"></span>
-            <span class="text-[11px] sm:text-xs font-mono text-on-surface-variant/70">LIVE · PORT 8932</span>
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+            <span class="text-[11px] sm:text-xs font-mono text-emerald-400 font-medium">ONLINE</span>
           </div>
           <h2 class="text-3xl sm:text-5xl lg:text-6xl font-headline font-black text-white tracking-tight mt-3 sm:mt-4 leading-none">
             ADK Daily News
@@ -412,7 +406,7 @@
                 <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
                 <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
                 <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-                <span class="text-xs font-mono text-on-surface-variant/80 ml-2 truncate max-w-[200px] sm:max-w-none">dailynews.adkfintech.com · PORT 8932</span>
+                <span class="text-xs font-mono text-on-surface-variant/80 ml-2 truncate max-w-[200px] sm:max-w-none">dailynews.adkfintech.com</span>
               </div>
               <div class="flex items-center gap-1.5 text-[11px] sm:text-xs font-mono text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full border border-secondary/20">
                 <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
@@ -455,14 +449,14 @@
                 <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
                 <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
                 <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-                <span class="text-xs font-mono text-white font-medium ml-1" id="infra-viewer-title">traffic.adkfintech.com · PORT 8927</span>
+                <span class="text-xs font-mono text-white font-medium ml-1" id="infra-viewer-title">traffic.adkfintech.com</span>
               </div>
               <!-- Service Switcher Pills -->
               <div class="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0">
-                <button class="infra-tab-btn active px-2.5 py-1 rounded-lg text-[11px] font-mono bg-primary text-on-primary font-semibold transition-all" data-img="assets/img/traffic.jpg" data-title="traffic.adkfintech.com · PORT 8927" data-project="traffic" type="button">Traffic</button>
-                <button class="infra-tab-btn px-2.5 py-1 rounded-lg text-[11px] font-mono bg-white/5 hover:bg-white/10 text-on-surface-variant transition-all" data-img="assets/img/auth.jpg" data-title="auth.adkfintech.com · PORT 8934" data-project="auth" type="button">Authelia</button>
-                <button class="infra-tab-btn px-2.5 py-1 rounded-lg text-[11px] font-mono bg-white/5 hover:bg-white/10 text-on-surface-variant transition-all" data-img="assets/img/notify.jpg" data-title="notify.adkfintech.com · PORT 8933" data-project="notify" type="button">Notify</button>
-                <button class="infra-tab-btn px-2.5 py-1 rounded-lg text-[11px] font-mono bg-white/5 hover:bg-white/10 text-on-surface-variant transition-all" data-img="assets/img/substore.jpg" data-title="sub.adkproxy.top · PORT 3001" data-project="substore" type="button">SubStore</button>
+                <button class="infra-tab-btn active px-2.5 py-1 rounded-lg text-[11px] font-mono bg-primary text-on-primary font-semibold transition-all" data-img="assets/img/traffic.jpg" data-title="traffic.adkfintech.com" data-project="traffic" type="button">Traffic</button>
+                <button class="infra-tab-btn px-2.5 py-1 rounded-lg text-[11px] font-mono bg-white/5 hover:bg-white/10 text-on-surface-variant transition-all" data-img="assets/img/auth.jpg" data-title="auth.adkfintech.com" data-project="auth" type="button">Authelia</button>
+                <button class="infra-tab-btn px-2.5 py-1 rounded-lg text-[11px] font-mono bg-white/5 hover:bg-white/10 text-on-surface-variant transition-all" data-img="assets/img/notify.jpg" data-title="notify.adkfintech.com" data-project="notify" type="button">Notify</button>
+                <button class="infra-tab-btn px-2.5 py-1 rounded-lg text-[11px] font-mono bg-white/5 hover:bg-white/10 text-on-surface-variant transition-all" data-img="assets/img/substore.jpg" data-title="sub.adkproxy.top" data-project="substore" type="button">SubStore</button>
               </div>
             </div>
 
@@ -491,8 +485,8 @@
         <div class="lg:col-span-5 flex flex-col items-start text-left order-1 lg:order-2 parallax-content">
           <div class="flex items-center gap-2.5 sm:gap-3">
             <span class="text-xs font-mono text-primary tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold">04 / ZERO-TRUST &amp; INFRA</span>
-            <span class="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_#7dd3fc]"></span>
-            <span class="text-[11px] sm:text-xs font-mono text-on-surface-variant/70">8927 / 8934 / 8933</span>
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+            <span class="text-[11px] sm:text-xs font-mono text-emerald-400 font-medium">ONLINE MESH</span>
           </div>
           <h2 class="text-3xl sm:text-5xl lg:text-6xl font-headline font-black text-white tracking-tight mt-3 sm:mt-4 leading-none">
             Traffic &amp; SSO
@@ -596,8 +590,8 @@
 
       <!-- Category Filter Tabs -->
       <div class="flex items-center gap-1.5 sm:gap-2 p-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono overflow-x-auto">
-        <button class="gallery-filter-btn px-3 sm:px-4 py-1.5 rounded-full bg-primary text-on-primary font-semibold transition-all whitespace-nowrap" data-filter="all" type="button">全部 / All (12)</button>
-        <button class="gallery-filter-btn px-3 sm:px-4 py-1.5 rounded-full text-on-surface-variant hover:text-white transition-all whitespace-nowrap" data-filter="cloud" type="button">云端在线服务 (6)</button>
+        <button class="gallery-filter-btn px-3 sm:px-4 py-1.5 rounded-full bg-primary text-on-primary font-semibold transition-all whitespace-nowrap" data-filter="all" type="button">全部 / All (14)</button>
+        <button class="gallery-filter-btn px-3 sm:px-4 py-1.5 rounded-full text-on-surface-variant hover:text-white transition-all whitespace-nowrap" data-filter="cloud" type="button">云端在线服务 (8)</button>
         <button class="gallery-filter-btn px-3 sm:px-4 py-1.5 rounded-full text-on-surface-variant hover:text-white transition-all whitespace-nowrap" data-filter="opensource" type="button">GitHub 开源 (6)</button>
       </div>
     </div>
@@ -623,7 +617,7 @@
               <img alt="ADK Quant" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/quant.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-primary border border-primary/30 font-semibold">01 / CLOUD</span>
-              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">LIVE · 8931</span>
+              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">ONLINE</span>
             </div>
             
             <div class="p-5 sm:p-6">
@@ -659,7 +653,7 @@
               <img alt="ADK Daily News" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/dailynews.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-secondary border border-secondary/30 font-semibold">02 / CLOUD</span>
-              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">LIVE · 8932</span>
+              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">ONLINE</span>
             </div>
             
             <div class="p-5 sm:p-6">
@@ -695,7 +689,7 @@
               <img alt="Notification Hub" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/notify.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-tertiary border border-tertiary/30 font-semibold">03 / CLOUD</span>
-              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">LIVE · 8933</span>
+              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">ONLINE</span>
             </div>
             
             <div class="p-5 sm:p-6">
@@ -731,7 +725,7 @@
               <img alt="VPS Traffic Panel" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/traffic.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-primary border border-primary/30 font-semibold">04 / CLOUD</span>
-              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">LIVE · 8927</span>
+              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">ONLINE</span>
             </div>
             
             <div class="p-5 sm:p-6">
@@ -767,7 +761,7 @@
               <img alt="Authelia SSO" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/auth.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-tertiary border border-tertiary/30 font-semibold">05 / CLOUD</span>
-              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">LIVE · 8934</span>
+              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">ONLINE</span>
             </div>
             
             <div class="p-5 sm:p-6">
@@ -803,7 +797,7 @@
               <img alt="Sub-Store" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/substore.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-secondary border border-secondary/30 font-semibold">06 / CLOUD</span>
-              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">LIVE · 3001</span>
+              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">ONLINE</span>
             </div>
             
             <div class="p-5 sm:p-6">
@@ -831,14 +825,86 @@
           </div>
         </div>
 
-        <!-- Project 7: Myblog-Vue3viteTs -->
+        <!-- Project 7: RectCanvas 坐标生成器 -->
+        <div class="project-card group relative rounded-3xl glass-card overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(125,211,252,0.2)] flex flex-col justify-between" data-category="cloud">
+          <div>
+            <!-- Real UI Screenshot Header -->
+            <div class="relative aspect-video w-full overflow-hidden bg-black/50 border-b border-white/5">
+              <img alt="RectCanvas 坐标生成器" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/position.jpg">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-primary border border-primary/30 font-semibold">07 / CLOUD</span>
+              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">ONLINE</span>
+            </div>
+            
+            <div class="p-5 sm:p-6">
+              <h3 class="text-xl sm:text-2xl font-headline font-bold text-white group-hover:text-primary transition-colors">RectCanvas 坐标生成器</h3>
+              <p class="text-xs text-primary font-mono mt-1">用于生成 Seedance GPTimage 的定位坐标</p>
+              <p class="text-xs text-on-surface-variant/80 font-light mt-2.5 leading-relaxed">
+                专为 Seedance GPTimage 与多模态生成量身定制的可视化选区坐标工具。支持高精度画布拖拽标注、多坐标系自动转换与 JSON 一键导出。开源于 ADKcodeXD/Coordinate-based-Frame-Generator。
+              </p>
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-white/5 text-on-surface-variant">React</span>
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-white/5 text-on-surface-variant">Canvas API</span>
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-white/5 text-on-surface-variant">Seedance GPTimage</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 sm:px-6 pb-5 sm:pb-6 pt-3 border-t border-white/5 flex items-center justify-between">
+            <button class="open-dialog-btn text-xs font-mono text-on-surface-variant hover:text-white flex items-center gap-1.5 transition-colors" data-project="position" type="button">
+              <span class="material-symbols-outlined text-base text-primary">info</span>
+              <span>详情</span>
+            </button>
+            <a class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-medium text-xs flex items-center gap-1 hover:scale-105 transition-transform active:scale-95" href="https://position.adkfintech.com" rel="noopener noreferrer" target="_blank">
+              <span>进入工具</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 8: CV Ranking 声优总榜 -->
+        <div class="project-card group relative rounded-3xl glass-card overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(200,160,240,0.2)] flex flex-col justify-between" data-category="cloud">
+          <div>
+            <!-- Real UI Screenshot Header -->
+            <div class="relative aspect-video w-full overflow-hidden bg-black/50 border-b border-white/5">
+              <img alt="CV Ranking 声优总榜" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/cvranking.png">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-tertiary border border-tertiary/30 font-semibold">08 / CLOUD</span>
+              <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 backdrop-blur-md border border-emerald-500/30">ONLINE</span>
+            </div>
+            
+            <div class="p-5 sm:p-6">
+              <h3 class="text-xl sm:text-2xl font-headline font-bold text-white group-hover:text-tertiary transition-colors">CV Ranking 声优总榜</h3>
+              <p class="text-xs text-tertiary font-mono mt-1">日本声优影响力前 200 大数据排行榜</p>
+              <p class="text-xs text-on-surface-variant/80 font-light mt-2.5 leading-relaxed">
+                全网日本声优影响力与作品大数据分析排行平台 (ADKcodeXD/japanese-voice-actor-ranking)。收录业界前 200 位知名声优，提供多维度加权总榜与作品履历库。
+              </p>
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-white/5 text-on-surface-variant">Web Analytics</span>
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-white/5 text-on-surface-variant">Top 200</span>
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-white/5 text-on-surface-variant">Data Viz</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 sm:px-6 pb-5 sm:pb-6 pt-3 border-t border-white/5 flex items-center justify-between">
+            <button class="open-dialog-btn text-xs font-mono text-on-surface-variant hover:text-white flex items-center gap-1.5 transition-colors" data-project="cvranking" type="button">
+              <span class="material-symbols-outlined text-base text-tertiary">info</span>
+              <span>详情</span>
+            </button>
+            <a class="px-4 py-1.5 rounded-full bg-tertiary text-on-tertiary font-medium text-xs flex items-center gap-1 hover:scale-105 transition-transform active:scale-95" href="https://cvranking.adkfintech.com" rel="noopener noreferrer" target="_blank">
+              <span>查看总榜</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 9: Myblog-Vue3viteTs -->
         <div class="project-card group relative rounded-3xl glass-card overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(125,211,252,0.2)] flex flex-col justify-between" data-category="opensource">
           <div>
             <!-- Real UI Screenshot Header -->
             <div class="relative aspect-video w-full overflow-hidden bg-black/50 border-b border-white/5">
               <img alt="Myblog-Vue3viteTs" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/myblog.png">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
-              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-primary border border-primary/30 font-semibold">07 / OPEN SOURCE</span>
+              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-primary border border-primary/30 font-semibold">09 / OPEN SOURCE</span>
               <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 backdrop-blur-md border border-amber-500/30">★ 128 STARS</span>
             </div>
             
@@ -867,14 +933,14 @@
           </div>
         </div>
 
-        <!-- Project 8: Vue3-Emoji -->
+        <!-- Project 10: Vue3-Emoji -->
         <div class="project-card group relative rounded-3xl glass-card overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(200,160,240,0.2)] flex flex-col justify-between" data-category="opensource">
           <div>
             <!-- Real UI Screenshot Header -->
             <div class="relative aspect-video w-full overflow-hidden bg-black/50 border-b border-white/5">
               <img alt="Vue3-Emoji" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/vue3-emoji.png">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
-              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-tertiary border border-tertiary/30 font-semibold">08 / OPEN SOURCE</span>
+              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-tertiary border border-tertiary/30 font-semibold">10 / OPEN SOURCE</span>
               <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 backdrop-blur-md border border-amber-500/30">★ 56 STARS</span>
             </div>
             
@@ -903,14 +969,14 @@
           </div>
         </div>
 
-        <!-- Project 9: MMGC-frontend -->
+        <!-- Project 11: MMGC Project -->
         <div class="project-card group relative rounded-3xl glass-card overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(136,180,204,0.2)] flex flex-col justify-between" data-category="opensource">
           <div>
             <!-- Real UI Screenshot Header -->
             <div class="relative aspect-video w-full overflow-hidden bg-black/50 border-b border-white/5">
               <img alt="MMGC Nuxt3 Portal" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/mmgc.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
-              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-secondary border border-secondary/30 font-semibold">09 / OPEN SOURCE</span>
+              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-secondary border border-secondary/30 font-semibold">11 / OPEN SOURCE</span>
               <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 backdrop-blur-md border border-amber-500/30">★ 20 STARS</span>
             </div>
             
@@ -932,21 +998,21 @@
               <span class="material-symbols-outlined text-base text-secondary">info</span>
               <span>详情</span>
             </button>
-            <a class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-medium text-xs flex items-center gap-1 hover:scale-105 transition-transform active:scale-95" href="https://github.com/ADKcodeXD/MMGC-frontend" rel="noopener noreferrer" target="_blank">
+            <a class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-medium text-xs flex items-center gap-1 hover:scale-105 transition-transform active:scale-95" href="https://github.com/ADKcodeXD/MMGC-Project" rel="noopener noreferrer" target="_blank">
               <span>GitHub (20★)</span>
               <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
           </div>
         </div>
 
-        <!-- Project 10: ADKblog-backend -->
+        <!-- Project 12: ADKblog-backend -->
         <div class="project-card group relative rounded-3xl glass-card overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(125,211,252,0.2)] flex flex-col justify-between" data-category="opensource">
           <div>
             <!-- Real UI Screenshot Header -->
             <div class="relative aspect-video w-full overflow-hidden bg-black/50 border-b border-white/5">
               <img alt="ADKblog-backend" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/adkblog-backend.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
-              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-primary border border-primary/30 font-semibold">10 / OPEN SOURCE</span>
+              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-primary border border-primary/30 font-semibold">12 / OPEN SOURCE</span>
               <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 backdrop-blur-md border border-amber-500/30">★ 17 STARS</span>
             </div>
             
@@ -975,14 +1041,14 @@
           </div>
         </div>
 
-        <!-- Project 11: Anime-Audio-Dataset-Maker -->
+        <!-- Project 13: Anime-Audio-Dataset-Maker -->
         <div class="project-card group relative rounded-3xl glass-card overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(200,160,240,0.2)] flex flex-col justify-between" data-category="opensource">
           <div>
             <!-- Real UI Screenshot Header -->
             <div class="relative aspect-video w-full overflow-hidden bg-black/50 border-b border-white/5">
               <img alt="Anime Audio Maker" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/anime-audio.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
-              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-tertiary border border-tertiary/30 font-semibold">11 / OPEN SOURCE</span>
+              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-tertiary border border-tertiary/30 font-semibold">13 / OPEN SOURCE</span>
               <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 backdrop-blur-md border border-amber-500/30">★ 6 STARS</span>
             </div>
             
@@ -1011,14 +1077,14 @@
           </div>
         </div>
 
-        <!-- Project 12: EasyNote -->
+        <!-- Project 14: EasyNote -->
         <div class="project-card group relative rounded-3xl glass-card overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(136,180,204,0.2)] flex flex-col justify-between" data-category="opensource">
           <div>
             <!-- Real UI Screenshot Header -->
             <div class="relative aspect-video w-full overflow-hidden bg-black/50 border-b border-white/5">
               <img alt="EasyNote" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/img/easynote.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-transparent to-transparent"></div>
-              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-secondary border border-secondary/30 font-semibold">12 / OPEN SOURCE</span>
+              <span class="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-secondary border border-secondary/30 font-semibold">14 / OPEN SOURCE</span>
               <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-md bg-secondary/20 text-secondary backdrop-blur-md border border-secondary/30">NUXT 3 APP</span>
             </div>
             
@@ -1111,41 +1177,55 @@
   <script>
     (function() {
       // 1. Ambient Dynamic Starfield Canvas
+      // 1. Ambient Dynamic Starfield Canvas (Retina-Aware & Twinkling)
       const canvas = document.getElementById('ambient-canvas');
       if (canvas) {
         const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
+        let width, height, dpr;
+        let stars = [];
 
-        const stars = Array.from({ length: 70 }, () => ({
+        function resizeCanvas() {
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = Math.floor(width * dpr);
+          canvas.height = Math.floor(height * dpr);
+          canvas.style.width = width + 'px';
+          canvas.style.height = height + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        window.addEventListener('resize', resizeCanvas, { passive: true });
+        resizeCanvas();
+
+        stars = Array.from({ length: 80 }, () => ({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 1.4 + 0.3,
-          alpha: Math.random() * 0.7 + 0.2,
-          speed: Math.random() * 0.25 + 0.05
+          radius: Math.random() * 1.5 + 0.6,
+          baseAlpha: Math.random() * 0.45 + 0.35,
+          twinkleSpeed: Math.random() * 0.03 + 0.015,
+          twinklePhase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.25 + 0.06,
+          color: Math.random() > 0.5 ? '125, 211, 252' : (Math.random() > 0.4 ? '255, 255, 255' : '192, 132, 252')
         }));
 
         function animateStars() {
           ctx.clearRect(0, 0, width, height);
           for (let star of stars) {
             star.y -= star.speed;
+            star.twinklePhase += star.twinkleSpeed;
+            const alpha = Math.max(0.15, Math.min(1, star.baseAlpha + Math.sin(star.twinklePhase) * 0.25));
             if (star.y < 0) {
               star.y = height;
               star.x = Math.random() * width;
             }
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(125, 211, 252, ${star.alpha})`;
+            ctx.fillStyle = `rgba(${star.color}, ${alpha})`;
             ctx.fill();
           }
           requestAnimationFrame(animateStars);
         }
         animateStars();
-
-        window.addEventListener('resize', () => {
-          width = canvas.width = window.innerWidth;
-          height = canvas.height = window.innerHeight;
-        });
       }
 
       // 2. High-Performance Downward Scroll & Mouse Parallax Engine
@@ -1295,7 +1375,7 @@
       const projectData = {
         'quant': {
           tag: '01 / CLOUD SERVICE',
-          version: 'LIVE · PORT 8931',
+          version: 'CLOUD ONLINE',
           title: 'ADK Quant',
           subtitle: '资产持仓与量化监控服务',
           img: 'assets/img/quant.jpg',
@@ -1311,7 +1391,7 @@
         },
         'dailynews': {
           tag: '02 / CLOUD SERVICE',
-          version: 'LIVE · PORT 8932',
+          version: 'CLOUD ONLINE',
           title: 'ADK Daily News',
           subtitle: '每日 AI 早报与资讯聚合中枢',
           img: 'assets/img/dailynews.jpg',
@@ -1327,7 +1407,7 @@
         },
         'notify': {
           tag: '03 / CLOUD SERVICE',
-          version: 'LIVE · PORT 8933',
+          version: 'CLOUD ONLINE',
           title: 'ADK Notification Hub',
           subtitle: '统一通知推送与告警中心',
           img: 'assets/img/notify.jpg',
@@ -1343,7 +1423,7 @@
         },
         'traffic': {
           tag: '04 / CLOUD SERVICE',
-          version: 'LIVE · PORT 8927',
+          version: 'CLOUD ONLINE',
           title: 'ADK VPS Traffic Panel',
           subtitle: 'VPS 节点与网络流量监控系统',
           img: 'assets/img/traffic.jpg',
@@ -1359,7 +1439,7 @@
         },
         'auth': {
           tag: '05 / CLOUD SERVICE',
-          version: 'LIVE · PORT 8934',
+          version: 'CLOUD ONLINE',
           title: 'Authelia Zero-Trust SSO',
           subtitle: '统一单点登录与零信任网关',
           img: 'assets/img/auth.jpg',
@@ -1375,7 +1455,7 @@
         },
         'substore': {
           tag: '06 / CLOUD SERVICE',
-          version: 'LIVE · PORT 3001',
+          version: 'CLOUD ONLINE',
           title: 'Sub-Store & Proxy Hub',
           subtitle: '订阅聚合与分流规则管理',
           img: 'assets/img/substore.jpg',
@@ -1389,8 +1469,40 @@
           link: 'https://sub.adkproxy.top',
           actionText: '订阅管理面板'
         },
+        'position': {
+          tag: '07 / CLOUD SERVICE',
+          version: 'CLOUD ONLINE',
+          title: 'RectCanvas 坐标生成器',
+          subtitle: '用于生成 Seedance GPTimage 的定位坐标',
+          img: 'assets/img/position.jpg',
+          desc: '专为 Seedance GPTimage 与多模态图像生成量身定制的可视化定位坐标工具。支持高精度画布拖拽标注、多坐标系自动转换与规范化选区坐标 JSON 导出。开源仓库: ADKcodeXD/Coordinate-based-Frame-Generator。',
+          specs: ['React', 'TypeScript', 'Canvas API', 'Seedance GPTimage', 'JSON Export', 'Frame Generator'],
+          changelog: [
+            '• [Engine] 高性能 HTML5 Canvas 选区绘制与多锚点微调引擎',
+            '• [Algorithm] 深度适配 Seedance GPTimage 坐标空间映射与归一化矩阵计算',
+            '• [Repo] 开源仓库已发布: ADKcodeXD/Coordinate-based-Frame-Generator'
+          ],
+          link: 'https://position.adkfintech.com',
+          actionText: '进入坐标生成器'
+        },
+        'cvranking': {
+          tag: '08 / CLOUD SERVICE',
+          version: 'CLOUD ONLINE',
+          title: 'CV Ranking 声优总榜',
+          subtitle: '日本声优前 200 影响力大数据榜单',
+          img: 'assets/img/cvranking.png',
+          desc: '全网日本声优影响力与作品大数据分析排行平台。收录业界前 200 位知名声优，基于海量作品数据库与多维度指标综合评分加权。开源仓库: ADKcodeXD/japanese-voice-actor-ranking。',
+          specs: ['Web Analytics', 'Data Visualization', 'Top 200 Index', 'Voice Actor Ranking', 'Fast Search'],
+          changelog: [
+            '• [Ranking] 优化声优影响力综合加权算法，更精准呈现热度演变趋势',
+            '• [Data] 完善 Top 200 声优海量作品履历库与角色网络图谱',
+            '• [Repo] 开源仓库已发布: ADKcodeXD/japanese-voice-actor-ranking'
+          ],
+          link: 'https://cvranking.adkfintech.com',
+          actionText: '查看声优总榜'
+        },
         'myblog': {
-          tag: '07 / OPEN SOURCE',
+          tag: '09 / OPEN SOURCE',
           version: '★ 128 STARS · GITHUB',
           title: 'Myblog-Vue3viteTs',
           subtitle: '全功能现代化个人博客前端平台',
@@ -1406,7 +1518,7 @@
           actionText: '查看 GitHub 仓库'
         },
         'vue3-emoji': {
-          tag: '08 / OPEN SOURCE',
+          tag: '10 / OPEN SOURCE',
           version: '★ 56 STARS · NPM PACKAGE',
           title: 'Vue3-Emoji',
           subtitle: '轻量级高复用表情选择器组件',
@@ -1422,7 +1534,7 @@
           actionText: '查看 GitHub 仓库'
         },
         'mmgc': {
-          tag: '09 / OPEN SOURCE',
+          tag: '11 / OPEN SOURCE',
           version: '★ 20 STARS · NUXT 3 SSR',
           title: 'MMGC Nuxt3 Portal',
           subtitle: '黄金祭 MMGC 官方网站系统',
@@ -1432,13 +1544,13 @@
           changelog: [
             '• [SSR] 基于 Nitro 引擎实现高并发静态生成与边缘服务端渲染',
             '• [i18n] 全站多语言国际化无缝切换与路由自动映射',
-            '• [UI] 深度适配 Element Plus 暗色系主题与移动端流式布局'
+            '• [Repo] 统一迁移并更新至 ADKcodeXD/MMGC-Project'
           ],
-          link: 'https://github.com/ADKcodeXD/MMGC-frontend',
+          link: 'https://github.com/ADKcodeXD/MMGC-Project',
           actionText: '查看 GitHub 仓库'
         },
         'adkblog-backend': {
-          tag: '10 / OPEN SOURCE',
+          tag: '12 / OPEN SOURCE',
           version: '★ 17 STARS · SPRING BOOT',
           title: 'ADKblog-backend',
           subtitle: '企业级博客服务后端系统',
@@ -1454,7 +1566,7 @@
           actionText: '查看 GitHub 仓库'
         },
         'anime-audio': {
-          tag: '11 / OPEN SOURCE',
+          tag: '13 / OPEN SOURCE',
           version: '★ 6 STARS · PYTHON / VITS',
           title: 'Anime Audio Dataset Maker',
           subtitle: '动漫语音识别与训练切片流水线',
@@ -1470,7 +1582,7 @@
           actionText: '查看 GitHub 仓库'
         },
         'easynote': {
-          tag: '12 / OPEN SOURCE',
+          tag: '14 / OPEN SOURCE',
           version: 'NUXT 3 APP · LOCAL-FIRST',
           title: 'EasyNote',
           subtitle: '基于 Nuxt 3 的极简云端通用笔记',

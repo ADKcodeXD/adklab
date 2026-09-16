@@ -197,10 +197,10 @@
   <!-- Fixed Cosmic Starfield Particle Canvas -->
   <canvas id="space-canvas" width="390" height="844"></canvas>
 
-  <!-- Ambient Fluid Atmospheric Glow Orbs (Dynamic Touch Parallax Supported) -->
-  <div class="fixed top-[-5%] -left-[20%] w-[85vw] h-[85vw] rounded-full bg-sky-500/15 blur-[120px] pointer-events-none animate-pulse-glow z-0 parallax-orb" id="glow-orb-1"></div>
-  <div class="fixed top-[45%] -right-[20%] w-[75vw] h-[75vw] rounded-full bg-indigo-600/12 blur-[120px] pointer-events-none animate-pulse-glow z-0 parallax-orb" id="glow-orb-2" style="animation-delay: 3s;"></div>
-  <div class="fixed bottom-[-5%] -left-[15%] w-[80vw] h-[80vw] rounded-full bg-cyan-400/10 blur-[130px] pointer-events-none animate-pulse-glow z-0 parallax-orb" id="glow-orb-3" style="animation-delay: 1.5s;"></div>
+  <!-- Ambient Fluid Atmospheric Glow Orbs (Hardware-optimized radial gradients, zero expensive blur filter) -->
+  <div class="fixed top-[-10%] -left-[25%] w-[90vw] h-[90vw] pointer-events-none z-0 parallax-orb transform-gpu" id="glow-orb-1" style="background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.18) 0%, rgba(56, 189, 248, 0.05) 45%, transparent 70%);"></div>
+  <div class="fixed top-[40%] -right-[25%] w-[85vw] h-[85vw] pointer-events-none z-0 parallax-orb transform-gpu" id="glow-orb-2" style="background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.16) 0%, rgba(99, 102, 241, 0.04) 45%, transparent 70%);"></div>
+  <div class="fixed bottom-[-10%] -left-[20%] w-[90vw] h-[90vw] pointer-events-none z-0 parallax-orb transform-gpu" id="glow-orb-3" style="background: radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0.04) 45%, transparent 70%);"></div>
 
   <!-- TOP MINIMAL BORDERLESS CONTROLS (Floating HUD) -->
   <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-3 pb-2 flex items-center justify-between pointer-events-none">
@@ -284,7 +284,7 @@
           <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-slate-400" id="hero-badges">
             <span class="hero-badge px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-cyan-300 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#38bdf8]"></span>
-              6 项在线微服务
+              8 项在线微服务
             </span>
             <span class="hero-badge px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-purple-300 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-purple-400 shadow-[0_0_6px_#c084fc]"></span>
@@ -320,13 +320,13 @@
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#38bdf8]"></span>
             <h2 class="text-xs font-mono tracking-widest text-cyan-300 uppercase font-semibold">PROJECTS LIST</h2>
-            <span class="text-[10px] font-mono text-slate-500" id="projects-counter-badge">(12 项)</span>
+            <span class="text-[10px] font-mono text-slate-500" id="projects-counter-badge">(14 项)</span>
           </div>
 
           <!-- Category Filter Tabs -->
           <div class="flex items-center gap-1 text-[10px] font-mono">
-            <button class="m-filter-btn active px-2.5 py-1 rounded-full bg-sky-400 text-slate-950 font-bold shadow-md shadow-sky-400/20 transition-all" data-filter="all" onclick="filterProjects('all')">全部(12)</button>
-            <button class="m-filter-btn px-2 py-1 rounded-full text-slate-400 hover:text-white transition-all" data-filter="cloud" onclick="filterProjects('cloud')">云服务(6)</button>
+            <button class="m-filter-btn active px-2.5 py-1 rounded-full bg-sky-400 text-slate-950 font-bold shadow-md shadow-sky-400/20 transition-all" data-filter="all" onclick="filterProjects('all')">全部(14)</button>
+            <button class="m-filter-btn px-2 py-1 rounded-full text-slate-400 hover:text-white transition-all" data-filter="cloud" onclick="filterProjects('cloud')">云服务(8)</button>
             <button class="m-filter-btn px-2 py-1 rounded-full text-slate-400 hover:text-white transition-all" data-filter="oss" onclick="filterProjects('oss')">开源(6)</button>
           </div>
         </div>
@@ -344,7 +344,7 @@
                       <img src="assets/img/quant.jpg" alt="ADK Quant" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy">
                       <div class="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-black/30"></div>
                       <span class="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-sky-400/20 text-cyan-300 border border-sky-400/30 backdrop-blur-md">云端微服务</span>
-                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">PORT 8931</span>
+                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">ONLINE</span>
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
@@ -379,7 +379,7 @@
                       <img src="assets/img/dailynews.jpg" alt="ADK Daily News" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy">
                       <div class="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-black/30"></div>
                       <span class="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-sky-400/20 text-cyan-300 border border-sky-400/30 backdrop-blur-md">云端微服务</span>
-                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">PORT 8932</span>
+                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">ONLINE</span>
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
@@ -414,7 +414,7 @@
                       <img src="assets/img/traffic.jpg" alt="VPS Traffic Panel" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy">
                       <div class="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-black/30"></div>
                       <span class="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-sky-400/20 text-cyan-300 border border-sky-400/30 backdrop-blur-md">云端微服务</span>
-                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">PORT 8927</span>
+                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">ONLINE</span>
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
@@ -449,7 +449,7 @@
                       <img src="assets/img/notify.jpg" alt="Notification Hub" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy">
                       <div class="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-black/30"></div>
                       <span class="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-sky-400/20 text-cyan-300 border border-sky-400/30 backdrop-blur-md">云端微服务</span>
-                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">PORT 8933</span>
+                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">ONLINE</span>
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
@@ -484,7 +484,7 @@
                       <img src="assets/img/auth.jpg" alt="Authelia SSO" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy">
                       <div class="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-black/30"></div>
                       <span class="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-sky-400/20 text-cyan-300 border border-sky-400/30 backdrop-blur-md">云端微服务</span>
-                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">PORT 8934</span>
+                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">ONLINE</span>
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
@@ -519,7 +519,7 @@
                       <img src="assets/img/substore.jpg" alt="Sub-Store Hub" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy">
                       <div class="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-black/30"></div>
                       <span class="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-sky-400/20 text-cyan-300 border border-sky-400/30 backdrop-blur-md">云端微服务</span>
-                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">PORT 3001</span>
+                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">ONLINE</span>
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
@@ -546,7 +546,77 @@
                 </div>
               </div>
 
-              <!-- 07: Myblog-Vue3viteTs -->
+              <!-- 07: RectCanvas 坐标生成器 -->
+              <div class="swiper-slide" data-category="cloud">
+                <div class="project-card bg-theme-cloud flex flex-col justify-between h-full p-3.5 group cursor-pointer" onclick="openDetailModal('position')">
+                  <div>
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black/60 shadow-md">
+                      <img src="assets/img/position.jpg" alt="RectCanvas 坐标生成器" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                      <div class="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-black/30"></div>
+                      <span class="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-sky-400/20 text-cyan-300 border border-sky-400/30 backdrop-blur-md">云端微服务</span>
+                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">ONLINE</span>
+                    </div>
+                    <div class="mt-3 text-left">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-mono text-cyan-400 font-semibold">#07</span>
+                        <span class="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> AI 定位工具
+                        </span>
+                      </div>
+                      <h3 class="text-base font-black text-white group-hover:text-cyan-300 transition-colors tracking-tight mt-0.5">RectCanvas 坐标生成器</h3>
+                      <p class="text-[11px] text-slate-300 mt-1 leading-snug font-light line-clamp-2">专为 Seedance GPTimage 与多模态生成打造的可视化定位坐标生成器。开源于 ADKcodeXD/Coordinate-based-Frame-Generator。</p>
+                      <div class="mt-2.5 flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/[0.05] text-slate-300">React</span>
+                        <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/[0.05] text-slate-300">Canvas</span>
+                        <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/[0.05] text-cyan-300">Seedance</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-3 pt-2.5 flex items-center justify-between border-t border-white/10 text-[10px] font-mono text-cyan-300">
+                    <span class="hover:underline">点击展开详情 ↗</span>
+                    <a class="px-3 py-1 rounded-full bg-gradient-to-r from-sky-400 to-cyan-300 text-slate-950 font-bold flex items-center gap-1 active:scale-95 shadow-md shadow-sky-400/20" href="https://position.adkfintech.com" target="_blank" onclick="event.stopPropagation()">
+                      <span>直接访问</span> <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 08: CV Ranking 声优总榜 -->
+              <div class="swiper-slide" data-category="cloud">
+                <div class="project-card bg-theme-cloud flex flex-col justify-between h-full p-3.5 group cursor-pointer" onclick="openDetailModal('cvranking')">
+                  <div>
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black/60 shadow-md">
+                      <img src="assets/img/cvranking.png" alt="CV Ranking 声优总榜" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                      <div class="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-black/30"></div>
+                      <span class="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-sky-400/20 text-cyan-300 border border-sky-400/30 backdrop-blur-md">云端微服务</span>
+                      <span class="absolute top-2 right-2 text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">ONLINE</span>
+                    </div>
+                    <div class="mt-3 text-left">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-mono text-cyan-400 font-semibold">#08</span>
+                        <span class="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 声优前 200 榜
+                        </span>
+                      </div>
+                      <h3 class="text-base font-black text-white group-hover:text-cyan-300 transition-colors tracking-tight mt-0.5">CV Ranking 声优总榜</h3>
+                      <p class="text-[11px] text-slate-300 mt-1 leading-snug font-light line-clamp-2">全网日本声优影响力与作品大数据分析排行平台 (ADKcodeXD/japanese-voice-actor-ranking)。收录前 200 位业界知名声优。</p>
+                      <div class="mt-2.5 flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/[0.05] text-slate-300">Top 200</span>
+                        <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/[0.05] text-slate-300">Data Viz</span>
+                        <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/[0.05] text-cyan-300">Analytics</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-3 pt-2.5 flex items-center justify-between border-t border-white/10 text-[10px] font-mono text-cyan-300">
+                    <span class="hover:underline">点击展开详情 ↗</span>
+                    <a class="px-3 py-1 rounded-full bg-gradient-to-r from-sky-400 to-cyan-300 text-slate-950 font-bold flex items-center gap-1 active:scale-95 shadow-md shadow-sky-400/20" href="https://cvranking.adkfintech.com" target="_blank" onclick="event.stopPropagation()">
+                      <span>直接访问</span> <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 09: Myblog-Vue3viteTs -->
               <div class="swiper-slide" data-category="oss">
                 <div class="project-card bg-theme-oss flex flex-col justify-between h-full p-3.5 group cursor-pointer" onclick="openDetailModal('myblog')">
                   <div>
@@ -558,7 +628,7 @@
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#07</span>
+                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#09</span>
                         <span class="text-[10px] font-mono text-purple-300 flex items-center gap-1">
                           <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> 活跃维护
                         </span>
@@ -581,7 +651,7 @@
                 </div>
               </div>
 
-              <!-- 08: Vue3-Emoji -->
+              <!-- 10: Vue3-Emoji -->
               <div class="swiper-slide" data-category="oss">
                 <div class="project-card bg-theme-oss flex flex-col justify-between h-full p-3.5 group cursor-pointer" onclick="openDetailModal('vue3-emoji')">
                   <div>
@@ -593,7 +663,7 @@
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#08</span>
+                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#10</span>
                         <span class="text-[10px] font-mono text-purple-300 flex items-center gap-1">
                           <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> NPM 组件
                         </span>
@@ -616,7 +686,7 @@
                 </div>
               </div>
 
-              <!-- 09: MMGC Nuxt3 Portal -->
+              <!-- 11: MMGC Nuxt3 Portal -->
               <div class="swiper-slide" data-category="oss">
                 <div class="project-card bg-theme-oss flex flex-col justify-between h-full p-3.5 group cursor-pointer" onclick="openDetailModal('mmgc')">
                   <div>
@@ -628,7 +698,7 @@
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#09</span>
+                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#11</span>
                         <span class="text-[10px] font-mono text-purple-300 flex items-center gap-1">
                           <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> 黄金祭官网
                         </span>
@@ -644,14 +714,14 @@
                   </div>
                   <div class="mt-3 pt-2.5 flex items-center justify-between border-t border-white/10 text-[10px] font-mono text-purple-300">
                     <span class="hover:underline">点击展开详情 ↗</span>
-                    <a class="px-3 py-1 rounded-full bg-gradient-to-r from-purple-400 to-indigo-300 text-slate-950 font-bold flex items-center gap-1 active:scale-95 shadow-md shadow-purple-400/20" href="https://github.com/ADKcodeXD/MMGC-frontend" target="_blank" onclick="event.stopPropagation()">
+                    <a class="px-3 py-1 rounded-full bg-gradient-to-r from-purple-400 to-indigo-300 text-slate-950 font-bold flex items-center gap-1 active:scale-95 shadow-md shadow-purple-400/20" href="https://github.com/ADKcodeXD/MMGC-Project" target="_blank" onclick="event.stopPropagation()">
                       <span>GitHub 仓库</span> <i class="fa-solid fa-arrow-right text-[9px]"></i>
                     </a>
                   </div>
                 </div>
               </div>
 
-              <!-- 10: ADKblog-backend -->
+              <!-- 12: ADKblog-backend -->
               <div class="swiper-slide" data-category="oss">
                 <div class="project-card bg-theme-oss flex flex-col justify-between h-full p-3.5 group cursor-pointer" onclick="openDetailModal('adkblog-backend')">
                   <div>
@@ -663,7 +733,7 @@
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#10</span>
+                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#12</span>
                         <span class="text-[10px] font-mono text-purple-300 flex items-center gap-1">
                           <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Spring Boot
                         </span>
@@ -686,7 +756,7 @@
                 </div>
               </div>
 
-              <!-- 11: Anime Audio Maker -->
+              <!-- 13: Anime Audio Maker -->
               <div class="swiper-slide" data-category="oss">
                 <div class="project-card bg-theme-oss flex flex-col justify-between h-full p-3.5 group cursor-pointer" onclick="openDetailModal('anime-audio')">
                   <div>
@@ -698,7 +768,7 @@
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#11</span>
+                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#13</span>
                         <span class="text-[10px] font-mono text-purple-300 flex items-center gap-1">
                           <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> 语音训练集
                         </span>
@@ -721,7 +791,7 @@
                 </div>
               </div>
 
-              <!-- 12: EasyNote -->
+              <!-- 14: EasyNote -->
               <div class="swiper-slide" data-category="oss">
                 <div class="project-card bg-theme-oss flex flex-col justify-between h-full p-3.5 group cursor-pointer" onclick="openDetailModal('easynote')">
                   <div>
@@ -733,7 +803,7 @@
                     </div>
                     <div class="mt-3 text-left">
                       <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#12</span>
+                        <span class="text-[10px] font-mono text-purple-400 font-semibold">#14</span>
                         <span class="text-[10px] font-mono text-purple-300 flex items-center gap-1">
                           <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> 本地优先
                         </span>
@@ -765,7 +835,7 @@
           <span class="flex items-center gap-1.5 text-slate-400 hover:text-sky-300 transition-colors">
             <i class="fa-solid fa-chevron-down text-[8px] animate-bounce-soft"></i> 向下滑动了解开发者
           </span>
-          <span class="text-cyan-400 font-mono tracking-wider" id="carousel-progress-label">01 / 12</span>
+          <span class="text-cyan-400 font-mono tracking-wider" id="carousel-progress-label">01 / 14</span>
         </div>
       </div>
 
@@ -854,7 +924,7 @@
 
         <div class="flex items-baseline justify-between gap-2">
           <h3 class="text-xl font-black text-white tracking-tight leading-snug" id="modal-title">项目详情</h3>
-          <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold text-cyan-300 bg-white/[0.05] border border-white/10" id="modal-version">PORT 8931</span>
+          <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold text-cyan-300 bg-white/[0.05] border border-white/10" id="modal-version">ONLINE</span>
         </div>
 
         <div class="mt-1.5 flex items-center gap-2" id="modal-status-container">
@@ -889,60 +959,56 @@
 
   <!-- JAVASCRIPT: Starfield, Swiper Initializer, GSAP Anim Engine, Touch Parallax -->
   <script>
-    // 1. STARFIELD / AMBIENT MICRO-PARTICLE CANVAS
+    // 1. AMBIENT DYNAMIC STARFIELD CANVAS (Retina-Aware & Twinkling)
     const canvas = document.getElementById('space-canvas');
-    const ctx = canvas.getContext('2d', { alpha: true });
-    let width, height;
-    let particles = [];
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let width, height, dpr;
+      let stars = [];
 
-    function resizeCanvas() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas, { passive: true });
-    resizeCanvas();
+      function resizeCanvas() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+      resizeCanvas();
 
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 1.5 + 0.4;
-        this.alpha = Math.random() * 0.5 + 0.15;
-        this.vx = (Math.random() - 0.5) * 0.25;
-        this.vy = -(Math.random() * 0.35 + 0.12);
-        this.color = Math.random() > 0.35 ? '#7dd3fc' : '#ffffff';
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.y < 0) this.y = height;
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.alpha;
-        ctx.fillRect(this.x, this.y, this.size, this.size);
-      }
-    }
+      stars = Array.from({ length: 45 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.6,
+        baseAlpha: Math.random() * 0.45 + 0.35,
+        twinkleSpeed: Math.random() * 0.03 + 0.015,
+        twinklePhase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.25 + 0.08,
+        color: Math.random() > 0.5 ? '125, 211, 252' : (Math.random() > 0.4 ? '255, 255, 255' : '192, 132, 252')
+      }));
 
-    const particleCount = 26;
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, width, height);
-      for (let i = 0; i < particleCount; i++) {
-        particles[i].update();
-        particles[i].draw();
+      function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+        for (let star of stars) {
+          star.y -= star.speed;
+          star.twinklePhase += star.twinkleSpeed;
+          const alpha = Math.max(0.15, Math.min(1, star.baseAlpha + Math.sin(star.twinklePhase) * 0.25));
+          if (star.y < 0) {
+            star.y = height;
+            star.x = Math.random() * width;
+          }
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${star.color}, ${alpha})`;
+          ctx.fill();
+        }
+        requestAnimationFrame(animateParticles);
       }
       requestAnimationFrame(animateParticles);
     }
-    requestAnimationFrame(animateParticles);
 
     // 2. AMBIENT GLOW ORBS CACHE FOR PARALLAX
     const orb1 = document.getElementById('glow-orb-1');
@@ -1165,7 +1231,7 @@
         title: 'ADK Quant',
         cat: '云端微服务',
         id: '#01',
-        version: 'PORT 8931',
+        version: 'ONLINE',
         status: '运行正常 · 100% 在线',
         img: 'assets/img/quant.jpg',
         desc: '个人量化资产与实时持仓监控平台。集中纳管多账户资产净值、策略盈亏跟踪、自动化风控告警与实时可视化图表。接入 Authelia 零信任网关，实现金融级安全防护。',
@@ -1176,7 +1242,7 @@
         title: 'ADK Daily News',
         cat: '云端微服务',
         id: '#02',
-        version: 'PORT 8932',
+        version: 'ONLINE',
         status: '定时运行 · 每日早报',
         img: 'assets/img/dailynews.jpg',
         desc: '基于 LLM 与自动化 Webhook 的每日资讯智能聚合平台。自动化抓取全球财经、前沿科技与行业趋势，通过多渠道自动化分发。',
@@ -1187,7 +1253,7 @@
         title: 'VPS Traffic Panel',
         cat: '云端微服务',
         id: '#03',
-        version: 'PORT 8927',
+        version: 'ONLINE',
         status: '毫秒级感知 · 运行正常',
         img: 'assets/img/traffic.jpg',
         desc: '高性能 VPS 网络负载与节点流量实时看板。直接对接 Xray 内核与时序统计数据库，提供毫秒级带宽监控与周期配额统计。',
@@ -1198,7 +1264,7 @@
         title: 'Notification Hub',
         cat: '云端微服务',
         id: '#04',
-        version: 'PORT 8933',
+        version: 'ONLINE',
         status: '运行正常 · 统一网关',
         img: 'assets/img/notify.jpg',
         desc: '高可用统一消息路由与警报分发中枢。统筹管理 Telegram、企业微信、飞书以及邮件等多协议通道，提供标准 RESTful Webhook。',
@@ -1209,7 +1275,7 @@
         title: 'Authelia SSO',
         cat: '云端微服务',
         id: '#05',
-        version: 'PORT 8934',
+        version: 'ONLINE',
         status: '零信任保护 · TLS 1.3',
         img: 'assets/img/auth.jpg',
         desc: '基于 Nginx Forward-Auth 的企业级身份鉴权中枢。为私有微服务提供双因素认证 (2FA TOTP) 与严格访问控制。',
@@ -1220,17 +1286,39 @@
         title: 'Sub-Store Hub',
         cat: '云端微服务',
         id: '#06',
-        version: 'PORT 3001',
+        version: 'ONLINE',
         status: '运行正常 · 订阅分流',
         img: 'assets/img/substore.jpg',
         desc: '高级节点订阅聚合、智能清洗与分流规则管理中心。支持多协议节点在线测速、正则过滤与 Clash / Surge 策略组编排。',
         features: ['Docker', 'Clash Provider', 'Node Regex Clean', 'Dynamic Speedtest'],
         url: 'https://sub.adkproxy.top'
       },
+      'position': {
+        title: 'RectCanvas 坐标生成器',
+        cat: '云端微服务',
+        id: '#07',
+        version: 'ONLINE',
+        status: '运行正常 · 开源工具',
+        img: 'assets/img/position.jpg',
+        desc: '专为 Seedance GPTimage 与多模态图像生成量身定制的可视化定位坐标工具。支持高精度画布拖拽标注、多坐标系自动转换与规范化选区坐标 JSON 导出。开源仓库: ADKcodeXD/Coordinate-based-Frame-Generator。',
+        features: ['React', 'Canvas API', 'GPTimage', 'JSON Export', 'Frame Generator'],
+        url: 'https://position.adkfintech.com'
+      },
+      'cvranking': {
+        title: 'CV Ranking 声优总榜',
+        cat: '云端微服务',
+        id: '#08',
+        version: 'ONLINE',
+        status: '运行正常 · 数据大屏',
+        img: 'assets/img/cvranking.png',
+        desc: '全网日本声优影响力与作品大数据分析排行平台。收录业界前 200 位知名声优，基于海量作品数据库与多维度指标综合评分加权。开源仓库: ADKcodeXD/japanese-voice-actor-ranking。',
+        features: ['Voice Actor', 'Top 200', 'Big Data', 'Ranking', 'Search Engine'],
+        url: 'https://cvranking.adkfintech.com'
+      },
       'myblog': {
         title: 'Myblog-Vue3viteTs',
         cat: 'GitHub 开源',
-        id: '#07',
+        id: '#09',
         version: '★ 128 STARS',
         status: '活跃维护 · 开源代表作',
         img: 'assets/img/myblog.png',
@@ -1241,7 +1329,7 @@
       'vue3-emoji': {
         title: 'Vue3-Emoji',
         cat: 'GitHub 开源',
-        id: '#08',
+        id: '#10',
         version: '★ 56 STARS',
         status: 'NPM Package · 开源组件',
         img: 'assets/img/vue3-emoji.png',
@@ -1252,18 +1340,18 @@
       'mmgc': {
         title: 'MMGC Nuxt3 Portal',
         cat: 'GitHub 开源',
-        id: '#09',
+        id: '#11',
         version: '★ 20 STARS',
         status: 'Nuxt 3 SSR · 黄金祭官网',
         img: 'assets/img/mmgc.jpg',
         desc: '黄金祭 MMGC 官方网站系统。采用 Nuxt 3 正式版全栈开发，具备 SSR 服务端渲染、Element Plus 定制与多语言 i18n。',
         features: ['Nuxt 3', 'SSR Nitro', 'Element Plus', 'vue-i18n'],
-        url: 'https://github.com/ADKcodeXD/MMGC-frontend'
+        url: 'https://github.com/ADKcodeXD/MMGC-Project'
       },
       'adkblog-backend': {
         title: 'ADKblog-backend',
         cat: 'GitHub 开源',
-        id: '#10',
+        id: '#12',
         version: '★ 17 STARS',
         status: 'Spring Boot · 企业后端',
         img: 'assets/img/adkblog-backend.jpg',
@@ -1274,7 +1362,7 @@
       'anime-audio': {
         title: 'Anime Audio Maker',
         cat: 'GitHub 开源',
-        id: '#11',
+        id: '#13',
         version: '★ 6 STARS',
         status: 'VITS 训练集 · 自动切片',
         img: 'assets/img/anime-audio.jpg',
@@ -1285,7 +1373,7 @@
       'easynote': {
         title: 'EasyNote',
         cat: 'GitHub 开源',
-        id: '#12',
+        id: '#14',
         version: 'NUXT 3 APP',
         status: '本地优先 · 极简笔记',
         img: 'assets/img/easynote.jpg',

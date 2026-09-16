@@ -45,6 +45,8 @@ const expectedProjectKeys = [
   'traffic',
   'auth',
   'substore',
+  'position',
+  'cvranking',
   'myblog',
   'vue3-emoji',
   'mmgc',
@@ -73,7 +75,9 @@ const expectedDomains = [
   'notify.adkfintech.com',
   'traffic.adkfintech.com',
   'auth.adkfintech.com',
-  'sub.adkproxy.top'
+  'sub.adkproxy.top',
+  'position.adkfintech.com',
+  'cvranking.adkfintech.com'
 ];
 
 expectedDomains.forEach(domain => {
@@ -83,9 +87,11 @@ expectedDomains.forEach(domain => {
 
 // 6. GitHub repos check
 const expectedRepos = [
+  'ADKcodeXD/Coordinate-based-Frame-Generator',
+  'ADKcodeXD/japanese-voice-actor-ranking',
+  'ADKcodeXD/MMGC-Project',
   'ADKcodeXD/Myblog-Vue3viteTs',
   'ADKcodeXD/Vue3-Emoji',
-  'ADKcodeXD/MMGC-frontend',
   'ADKcodeXD/ADKblog-backend',
   'ADKcodeXD/Anime-Audio-Dataset-Maker',
   'ADKcodeXD/EasyNote'
@@ -96,10 +102,19 @@ expectedRepos.forEach(repo => {
   assert(mobileHtml.includes(repo), `mobile.html includes GitHub repository: ${repo}`);
 });
 
-// 7. No unreplaced placeholder strings
-const forbiddenStrings = ['ADK Code Engine', 'ADK Visual Lab', 'projects/12559400244655682664', 'FIXME', 'TODO'];
+// 7. No unreplaced placeholder strings or unwanted text
+const forbiddenStrings = [
+  'ADK Code Engine',
+  'ADK Visual Lab',
+  'projects/12559400244655682664',
+  'FIXME',
+  'TODO',
+  'LIVE · PORT 8931',
+  'LIVE PORTAL & ECOSYSTEM'
+];
 forbiddenStrings.forEach(str => {
-  assert(!indexHtml.includes(str), `index.html should not contain placeholder: "${str}"`);
+  assert(!indexHtml.includes(str), `index.html should not contain forbidden string: "${str}"`);
+  assert(!mobileHtml.includes(str), `mobile.html should not contain forbidden string: "${str}"`);
 });
 
 // 8. Screenshot assets check
@@ -110,6 +125,8 @@ const expectedScreenshots = [
   'traffic.jpg',
   'auth.jpg',
   'substore.jpg',
+  'position.jpg',
+  'cvranking.png',
   'myblog.png',
   'vue3-emoji.png',
   'mmgc.jpg',
