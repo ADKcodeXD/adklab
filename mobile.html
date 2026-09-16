@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <title>ADK lab Mobile — 极简移动端门户</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container": "#111a2e",
+            "surface-container-high": "#18233c",
+            "primary": "#7dd3fc",
+            "secondary": "#88b4cc",
+            "tertiary": "#c8a0f0",
+            "on-surface": "#e0e8f0",
+            "on-surface-variant": "#a0b4c4",
+            "background": "#070a12"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background text-on-surface font-sans antialiased min-h-screen pb-16 px-4 pt-6">
+
+  <!-- Mobile Top Bar -->
+  <header class="flex items-center justify-between pb-6 border-b border-white/5">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary font-bold text-sm">
+        A
+      </div>
+      <div>
+        <h1 class="text-lg font-black tracking-tight text-white">ADK <span class="text-primary font-light">lab</span></h1>
+        <p class="text-[10px] font-mono text-on-surface-variant/70">Mobile Portal Edition</p>
+      </div>
+    </div>
+    <a class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs font-mono text-primary border border-primary/20 flex items-center gap-1" href="index.html">
+      <span>完整版</span>
+      <span class="material-symbols-outlined text-xs">arrow_forward</span>
+    </a>
+  </header>
+
+  <!-- Hero Card -->
+  <div class="mt-6 p-6 rounded-3xl bg-surface-container/60 backdrop-blur-2xl border border-primary/20 shadow-2xl relative overflow-hidden">
+    <div class="absolute -right-10 -top-10 w-36 h-36 rounded-full bg-primary/15 blur-2xl"></div>
+    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">ONLINE</span>
+    <h2 class="text-2xl font-black text-white mt-3 tracking-tight">探索发现更多有趣</h2>
+    <p class="text-xs text-on-surface-variant/85 font-light mt-2 leading-relaxed">
+      Develop By ADK · 6 项云端微服务稳定运行，GitHub 200+ 开源 Stars 沉淀。
+    </p>
+    <div class="mt-4 flex items-center gap-3">
+      <a class="flex-1 py-2.5 rounded-2xl bg-primary text-black font-semibold text-xs text-center shadow-lg active:scale-95 transition-transform" href="index.html#gallery-view">
+        查看项目全景 (12)
+      </a>
+      <a class="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-white text-xs font-medium flex items-center justify-center active:scale-95 transition-transform" href="https://github.com/ADKcodeXD" target="_blank">
+        <span class="material-symbols-outlined text-base">code</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Category 1: Cloud Services -->
+  <div class="mt-8">
+    <div class="flex items-center justify-between mb-3 px-1">
+      <h3 class="text-xs font-mono uppercase tracking-wider text-primary font-semibold flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+        本机云端微服务 (6)
+      </h3>
+      <span class="text-[10px] font-mono text-on-surface-variant/60">Active 24/7</span>
+    </div>
+
+    <div class="space-y-3">
+      <!-- Item 1 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://quant.adkfintech.com" target="_blank">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">query_stats</span>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">ADK Quant</div>
+            <div class="text-[11px] text-on-surface-variant/75">资产持仓与量化监控服务 · Port 8931</div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+      </a>
+
+      <!-- Item 2 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://dailynews.adkfintech.com" target="_blank">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-secondary/15 text-secondary flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">newspaper</span>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">ADK Daily News</div>
+            <div class="text-[11px] text-on-surface-variant/75">每日 AI 早报与资讯聚合 · Port 8932</div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+      </a>
+
+      <!-- Item 3 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://traffic.adkfintech.com" target="_blank">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">speed</span>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">VPS Traffic Panel</div>
+            <div class="text-[11px] text-on-surface-variant/75">VPS 节点与流量实时监控 · Port 8927</div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+      </a>
+
+      <!-- Item 4 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://notify.adkfintech.com" target="_blank">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-tertiary/15 text-tertiary flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">notifications_active</span>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">Notification Hub</div>
+            <div class="text-[11px] text-on-surface-variant/75">统一消息推送与告警中心 · Port 8933</div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-tertiary">arrow_forward</span>
+      </a>
+
+      <!-- Item 5 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://auth.adkfintech.com" target="_blank">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-tertiary/15 text-tertiary flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">lock_person</span>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">Authelia SSO</div>
+            <div class="text-[11px] text-on-surface-variant/75">双因素认证与零信任网关 · Port 8934</div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-tertiary">arrow_forward</span>
+      </a>
+
+      <!-- Item 6 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://sub.adkproxy.top" target="_blank">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-secondary/15 text-secondary flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">alt_route</span>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">Sub-Store Hub</div>
+            <div class="text-[11px] text-on-surface-variant/75">订阅转换与节点规则管理 · Port 3001</div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Category 2: GitHub Open Source -->
+  <div class="mt-8">
+    <div class="flex items-center justify-between mb-3 px-1">
+      <h3 class="text-xs font-mono uppercase tracking-wider text-tertiary font-semibold flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+        GitHub 开源代表作 (6)
+      </h3>
+      <span class="text-[10px] font-mono text-on-surface-variant/60">Featured OSS</span>
+    </div>
+
+    <div class="space-y-3">
+      <!-- OSS 1 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/Myblog-Vue3viteTs" target="_blank">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-white">Myblog-Vue3viteTs</span>
+            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 128</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">全功能现代化个人博客平台 · Vue 3 + Vite</div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-primary">open_in_new</span>
+      </a>
+
+      <!-- OSS 2 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/Vue3-Emoji" target="_blank">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-white">Vue3-Emoji</span>
+            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 56</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">轻量级高复用表情选择器组件库</div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-tertiary">open_in_new</span>
+      </a>
+
+      <!-- OSS 3 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/MMGC-frontend" target="_blank">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-white">MMGC Nuxt3 Portal</span>
+            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 20</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">黄金祭 MMGC 官方网站系统 · Nuxt 3 SSR</div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-secondary">open_in_new</span>
+      </a>
+
+      <!-- OSS 4 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/ADKblog-backend" target="_blank">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-white">ADKblog-backend</span>
+            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 17</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">企业级博客服务后端系统 · Spring Boot</div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-primary">open_in_new</span>
+      </a>
+
+      <!-- OSS 5 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/Anime-Audio-Dataset-Maker" target="_blank">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-white">Anime Audio Maker</span>
+            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-amber-500/20 text-amber-300">★ 6</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">动漫语音识别与训练切片流水线 · Python</div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-tertiary">open_in_new</span>
+      </a>
+
+      <!-- OSS 6 -->
+      <a class="p-4 rounded-2xl bg-surface-container/40 border border-white/5 flex items-center justify-between active:scale-98 transition-transform" href="https://github.com/ADKcodeXD/EasyNote" target="_blank">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-white">EasyNote</span>
+            <span class="px-2 py-0.2 text-[10px] font-mono rounded bg-secondary/20 text-secondary">NUXT 3</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant/75 mt-0.5">基于 Nuxt 3 的极简云端通用笔记</div>
+        </div>
+        <span class="material-symbols-outlined text-sm text-secondary">open_in_new</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-12 text-center text-[11px] font-mono text-on-surface-variant/50 border-t border-white/5 pt-6">
+    © 2026 ADK lab · Develop By ADK
+  </footer>
+
+</body>
+</html>

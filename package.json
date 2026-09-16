@@ -1,0 +1,22 @@
+{
+  "name": "adklab",
+  "version": "1.0.0",
+  "description": "ADK lab - Interactive Developer Portal & Cloud Services Showcase",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y serve . -l 3000",
+    "serve": "npx -y serve . -l 3000",
+    "test": "node scripts/test.js",
+    "lint": "node scripts/lint.js"
+  },
+  "keywords": [
+    "adk",
+    "adklab",
+    "portfolio",
+    "developer-portal",
+    "open-source",
+    "cloud-services"
+  ],
+  "author": "ADK (https://github.com/ADKcodeXD)",
+  "license": "MIT"
+}
