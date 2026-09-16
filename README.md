@@ -21,8 +21,9 @@
 
 **ADK lab** 是一个极具美感与极客质感的开发者综合门户与微服务枢纽。基于 **Glacier（冰川）玻璃拟态设计系统** 纯净打造，整合了本机正在 7×24 小时稳定运行的云端量化、AI 资讯与运维微服务，并精选展示了在 GitHub 上获得广泛关注的高质量开源项目。
 
-- 🌐 **在线预览 (GitHub Pages):** [https://adkcodexd.github.io/adklab/](https://adkcodexd.github.io/adklab/)
-- 📱 **移动端专属版:** `mobile.html`
+- 🚀 **官方主站 (生产环境):** [https://adkfintech.com](https://adkfintech.com)
+- 🌐 **备用镜像 (GitHub Pages):** [https://adkcodexd.github.io/adklab/](https://adkcodexd.github.io/adklab/)
+- 📱 **移动端专属版:** [https://adkfintech.com/mobile.html](https://adkfintech.com/mobile.html)
 - 🎨 **设计系统:** Glacier Glassmorphism (`#070a12` 深海夜黑、`#7dd3fc` 冰蓝、`#c8a0f0` 薰衣草紫)
 - ⚡ **无外部重依赖:** 采用纯原生 HTML5 Canvas 动态星空、CSS 视差微交互与响应式栅格
 
